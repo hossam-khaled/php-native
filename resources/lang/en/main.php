@@ -1,0 +1,20 @@
+<?php
+
+return [
+    'home' => 'Home',
+    'about' => 'About',
+    'contact' => 'Contact',
+    'login' => 'Login',
+    'register' => 'Register',
+    'logout' => 'Logout',
+    'profile' => 'Profile',
+    'settings' => 'Settings',
+    'dashboard' => 'Dashboard',
+    'users' => 'Users',
+    'posts' => 'Posts',
+    'comments' => 'Comments',
+    'page' => 'Page',
+    'welcome' => 'Welcome to our site', 
+    'search' => 'Search',
+    'submit' => 'Submit',
+];
