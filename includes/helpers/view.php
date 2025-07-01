@@ -11,15 +11,15 @@ if (!function_exists('view')) {
     function view(string $path,array $data = [])
     {   
         // echo 'view <br>';
-        // var_dump($path);
         $full_path = '';
         $current_path = explode('.', $path);
         foreach ($current_path as $current) {
-            if (end($current_path) === $current) {
-                $full_path .= '/' . $current;
-            }
+            $full_path .= '/' . $current;
+            // if (end($current_path) === $current) {
+            // }
             
         }
+        // var_dump($full_path);
         $viewPath = config('view.path') . '/' . $full_path . '.php';
         if (file_exists($viewPath)) {
             extract($data);

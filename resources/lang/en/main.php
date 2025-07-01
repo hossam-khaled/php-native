@@ -17,4 +17,7 @@ return [
     'welcome' => 'Welcome to our site', 
     'search' => 'Search',
     'submit' => 'Submit',
+    'language' => 'Language',
+    'arabic' => 'Arabic',
+    'english' => 'English',
 ];

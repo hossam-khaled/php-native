@@ -64,7 +64,7 @@ if (!function_exists('url')) {
     function url($path = '')
     {
         if (is_localhost()) {
-            $base_url = 'https://localhost/php-project/';
+            $base_url = 'https://localhost/php-native/';
         } else {
             $base_url = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
             $base_url .= $_SERVER['HTTP_HOST'] . '/';
@@ -78,7 +78,7 @@ if (!function_exists('sagment')) {
         if (is_localhost()) {
             // var_dump($_SERVER['REQUEST_URI']);
             // die;
-            $sagment = str_replace('/php-project', '', $_SERVER['REQUEST_URI']); // Remove leading and trailing slashes
+            $sagment = str_replace('/php-native', '', $_SERVER['REQUEST_URI']); // Remove leading and trailing slashes
             // $sagment = ltrim($_SERVER['REQUEST_URI'], '/'); // Remove leading and trailing slashes
             $sagment = explode('?', $sagment)[0]; // Remove query string if exists
             return !empty($sagment) ?  $sagment : null;

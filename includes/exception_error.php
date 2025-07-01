@@ -15,6 +15,6 @@ $GET_ROUTES = $routes['GET'] ?? [];
  */
 // var_dump(sagment());
 if (!isset($_POST['_method']) && !is_null(sagment()) && !in_array(sagment(), array_column($GET_ROUTES, 'sagment'))) {
-    echo "<h1> 404 Page Not Found " . sagment() .'</h1>';
+    view('404');
     exit;
 }
