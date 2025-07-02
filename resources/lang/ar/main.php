@@ -18,5 +18,5 @@ return [
     'search' => 'بحث',
     'language' => 'اللغة',
     'arabic' => 'العربية',
-    'english' => 'الإنجليزية',
+    'english' => 'English',
 ];

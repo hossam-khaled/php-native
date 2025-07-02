@@ -12,7 +12,7 @@ if (session_has('locale')) {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>php demo</title>
+    <title><?= isset($title) && !empty($title) ? $title : 'Project Name'; ?></title>
 
     <?php if(session_has('locale') == 'ar'): ?>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.rtl.min.css" integrity="sha384-Xbg45MqvDIk1e563NLpGEulpX6AvL404DP+/iCgW9eFa2BqztiwTexswJo2jLMue" crossorigin="anonymous">

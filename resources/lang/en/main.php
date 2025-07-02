@@ -18,6 +18,6 @@ return [
     'search' => 'Search',
     'submit' => 'Submit',
     'language' => 'Language',
-    'arabic' => 'Arabic',
+    'arabic' => 'العربية',
     'english' => 'English',
 ];

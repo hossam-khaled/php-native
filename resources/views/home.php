@@ -1,8 +1,8 @@
 <?php
-view('layouts.header', ['title' => 'Home Page']);
+view('layouts.header', ['title' => lang('main.home') ]);
 // set_locale('ar'); // Set locale to Arabic
 // var_dump(lang('main.home')); // Example usage
-echo "<h1>". lang('main.home', ['home' => 'Hossam']) ." ". lang('main.page') ."</h1>
+echo "<h1>". lang('main.home') ." ". lang('main.page') ."</h1>
 <p>". lang('main.welcome')."</p>
 <br>";
 if (session_has('success')) {
