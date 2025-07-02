@@ -63,10 +63,10 @@ if (!function_exists('redirect')) {
 if (!function_exists('url')) {
     function url($path = '')
     {
+        $base_url = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
         if (is_localhost()) {
-            $base_url = 'https://localhost/php-native/';
+            $base_url .= 'localhost/php-native/';
         } else {
-            $base_url = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
             $base_url .= $_SERVER['HTTP_HOST'] . '/';
         }
         return rtrim($base_url, '/') . '/' . ltrim($path, '/');

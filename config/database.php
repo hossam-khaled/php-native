@@ -3,7 +3,7 @@
 return [
     "servername"=> "localhost",
     "username"=> "root",
-    "password"=> "",
+    "password"=> "123456",
     "database"=> "php_practicing",
     "port"=> "3306",
 ];

@@ -1,5 +1,14 @@
+<?php
+if (session_has('locale')) {
+  $lang = session('locale');
+  $dir = session('locale') == 'ar' ? 'rtl' : 'ltr';
+}else {
+  $lang = 'en';
+  $dir = 'ltr';
+}
+?>
 <!doctype html>
-<html lang="<?= session_has('locale') ? session('locale') : 'en'?>" dir="<?= session('locale') == 'ar' ? 'rtl' : 'ltr'?>">
+<html lang="<?= $lang ?>" dir="<?= $dir ?>">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
