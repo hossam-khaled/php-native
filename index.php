@@ -2,6 +2,16 @@
 include(__DIR__ . "/includes/app.php");
 include(__DIR__ . "/routes/web.php");
 // Set session save path and start the session
+/**
+ * Initializes PHP session handling with custom configuration.
+ *
+ * - Sets the session save path using the value from the application's configuration.
+ * - Configures the session garbage collection probability to 1, ensuring cleanup runs on every request.
+ * - Starts the session with a custom cookie lifetime, as specified in the configuration.
+ *
+ * @see config("session.sessions_save_path") for the session storage path.
+ * @see config("session.expiration_timeout") for the session cookie lifetime.
+ */
 session_save_path(config("session.sessions_save_path"));
 ini_set('session.gc_probability', '1');
 session_start([

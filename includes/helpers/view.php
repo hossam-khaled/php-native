@@ -11,16 +11,18 @@ if (!function_exists('view')) {
     function view(string $path,array $data = [])
     {   
         // echo 'view <br>';
-        $full_path = '';
-        $current_path = explode('.', $path);
-        foreach ($current_path as $current) {
-            $full_path .= '/' . $current;
-            // if (end($current_path) === $current) {
-            // }
+        // $full_path = '';
+        // $current_path = explode('.', $path);
+        // foreach ($current_path as $current) {
+        //     if (end($current_path) != $current) {
+        //         $full_path .= '/' . $current;
+        //     }
             
-        }
-        // var_dump($full_path);
-        $viewPath = config('view.path') . '/' . $full_path . '.php';
+        // }
+        // $viewPath = config('view.path') . '/' . $full_path . '/' . end($current_path) . '.php';
+        $viewPath = config('view.path') . '/' . str_replace('.','/', $path ) . '.php';
+
+        // var_dump($viewPath);
         if (file_exists($viewPath)) {
             extract($data);
             require $viewPath;
