@@ -3,10 +3,10 @@
 if(!function_exists("session")){
     function session(string $key, mixed $vlaue = null) {
         if(!is_null($vlaue)) {
-            $_SESSION[$key] = $vlaue;
+            $_SESSION[$key] = aes_encrypt($vlaue);
         }
 
-        return isset($_SESSION[$key]) ? $_SESSION[$key] : '';
+        return isset($_SESSION[$key]) ? aes_decrypt($_SESSION[$key]) : '';
     }
 }
 

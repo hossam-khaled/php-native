@@ -1,6 +1,13 @@
 <?php
 include(__DIR__ . "/includes/app.php");
 include(__DIR__ . "/routes/web.php");
+// Set session save path and start the session
+session_save_path(config("session.sessions_save_path"));
+ini_set('session.gc_probability', '1');
+session_start([
+  "cookie_lifetime" => config("session.expiration_timeout"),
+]);
+
 include(__DIR__ . "/includes/exception_error.php");
 
 // var_dump( db_create(
@@ -38,16 +45,15 @@ include(__DIR__ . "/includes/exception_error.php");
 //  send mail
 //send_mail(['hossam.khaled.host@gmail'],'this is test','my first test mail')
 ob_start();
-session_start([
-  "cookie_lifetime" => config("session.expiration_timeout"),
-]);
+
 
 // session("hos" , 'this new hos test');
 
 // echo session('hos');
 // session_forget('hos');
 
-
+$data = aes_encrypt('this is a test value');
+aes_decrypt($data);
 route_init();
 
 if( !empty($GLOBALS["query"])) {
