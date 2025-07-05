@@ -50,7 +50,7 @@ if(!function_exists("session_flash")){
             $_SESSION[$key] = $vlaue;
         }
 
-        $session = isset($_SESSION[$key]) ? $_SESSION[$key] : '';
+        $session = isset($_SESSION[$key]) ? aes_decrypt($_SESSION[$key]) : '';
         session_forget($key); // remove the session after getting it
         return $session;
     }

@@ -17,7 +17,7 @@ if (!function_exists('route_get')) {
         global $routes;
         $routes['GET'][] = [
             'view' => $view,
-            'sagment' => '/' . ltrim($sagment, '/'),
+            'sagment' => '/' . public_() . '/'. ltrim($sagment, '/'),
         ];
     }
 }
@@ -38,7 +38,7 @@ if (!function_exists('route_post')) {
         global $routes;
         $routes['POST'][] = [
             'view' => $view,
-            'sagment' => '/' . ltrim($sagment, '/'),
+            'sagment' => '/' . public_() . '/'. ltrim($sagment, '/'),
         ];
     }
 }
@@ -126,7 +126,7 @@ if (!function_exists('url')) {
         } else {
             $base_url .= $_SERVER['HTTP_HOST'] . '/';
         }
-        return rtrim($base_url, '/') . '/' . ltrim($path, '/');
+        return rtrim($base_url, '/') . '/' . public_() . '/'. ltrim($path, '/');
     }
 }
 if (!function_exists('sagment')) {

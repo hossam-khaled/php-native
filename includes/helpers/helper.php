@@ -28,7 +28,18 @@ if(!function_exists("config")){
 
 if(!function_exists('base_path')){
     function base_path($path) {
+        return getcwd() . '/../' . $path ;
+    }
+}
+
+if(!function_exists('public_path')){
+    function public_path($path) {
         return getcwd() . '/' . $path ;
+    }
+}
+if(!function_exists('public_')){
+    function public_() {
+        return  'public' ;
     }
 }
 /**
