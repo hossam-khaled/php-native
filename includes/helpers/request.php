@@ -10,7 +10,9 @@
  */
 if (!function_exists('request')) {
     function request( $request = null) {
-
+        if( isset($_FILES[$request]) && !empty($_FILES[$request]) ){
+            return $_FILES[$request];
+        }
         return $_REQUEST[$request] ?$_REQUEST[$request] : null;
     }
 }

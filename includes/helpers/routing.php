@@ -82,7 +82,7 @@ if (!function_exists('route_init')) {
                 }
             }
             if (!is_null(sagment()) && !in_array(sagment(), array_column($POST_ROUTES, 'sagment'))) {
-                echo "<h1> 404 Page Not Found</h1>";
+                echo "<h1 style='color: red;'> 404 Page Not Found</h1>";
                 exit;
             }
         }
