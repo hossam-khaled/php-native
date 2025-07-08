@@ -15,6 +15,11 @@ $GET_ROUTES = $routes['GET'] ?? [];
  */
 // var_dump(sagment());
 if (!isset($_POST['_method']) && !is_null(sagment()) && !in_array(sagment(), array_column($GET_ROUTES, 'sagment'))) {
-    view('404');
-    exit;
+    $storage_psagment = str_replace('/'. public_().'/', '', sagment());
+    if (preg_match('/storage/i', $storage_psagment)) {
+        storage($storage_psagment);
+    }else {
+        view('404');
+        exit;
+    }
 }
