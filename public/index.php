@@ -1,47 +1,9 @@
 <?php
 include(__DIR__ . "/../includes/app.php");
 
-
-// var_dump( db_create(
-//   'users',
-//   array(
-//     'name' => 'hossam',
-//     'email' => 'hossam@email.com',
-//     'password' => '123456',
-//     'mobile' => '111111',
-//   )
-// ));
-
-// var_dump(db_update('users',
-//   array(
-//     'name' => 'hossam1111',
-//     'email' => 'hossam@email.com',
-//     'password' => '123456',
-//     'mobile' => '111111',
-//   ),
-//   12));
-// db_delete("users",11);
-// var_dump(db_find("users","10"));
-// var_dump(db_search("users","where name='hossam'"));
-
-
-// $users = db_paginate('users','',2);
-// var_dump($users);
-// if ($users['num'] > 0 ) {
-//   while ($row = mysqli_fetch_assoc($users['query'])) {
-//     echo $row['name'] .'<br>';
-//   }
-
-// }
-// echo $users['render'];
-//  send mail
-//send_mail(['hossam.khaled.host@gmail'],'this is test','my first test mail')
-
-
-// session("hos" , 'this new hos test');
-
-// echo session('hos');
-// session_forget('hos');
+session_start([
+  "cookie_lifetime" => config("session.expiration_timeout"),
+]);
 
 
 route_init();
