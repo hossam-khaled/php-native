@@ -37,7 +37,9 @@ foreach ($helpers as $helper) {
  */
 session_save_path(config("session.sessions_save_path"));
 ini_set('session.gc_probability', '1');
-
+session_start([
+  "cookie_lifetime" => config("session.expiration_timeout"),
+]);
 
 $connect = mysqli_connect(
   config("database.servername"),

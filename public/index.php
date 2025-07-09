@@ -1,9 +1,7 @@
 <?php
 include(__DIR__ . "/../includes/app.php");
 
-session_start([
-  "cookie_lifetime" => config("session.expiration_timeout"),
-]);
+
 
 if (!is_link(public_path('storage'))) {
   symlink(base_path('storage/files'), public_path('storage'));
