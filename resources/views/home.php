@@ -12,10 +12,8 @@ if (session_has('success')) {
 <div class="container">
     <a href="<?= url('storage/images/image.png'); ?>" class="btn btn-primary">image</a>
     <form action="<?= url('upload') ?>" method="post" enctype="multipart/form-data">
-        <div class="mb-3">
-            <label for="formFileMultiple" class="form-label">Multiple files input example</label>
-            <input class="form-control" type="file" name="images" id="formFileMultiple" multiple>
-        </div>
+      
+        <input class="form-control" type="text" name="email" >
         <input type="hidden" name="_method" value="post">
         <input type="submit" value="Upload Image" name="submit" class="btn btn-primary">
     </form>
