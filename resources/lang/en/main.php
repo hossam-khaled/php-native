@@ -20,5 +20,7 @@ return [
     'language' => 'Language',
     'arabic' => 'العربية',
     'english' => 'English',
-    'email' => 'Email'
+    'email' => 'Email',
+    'mobile' => 'Mobile Phone',
+    'address' => 'Address',
 ];

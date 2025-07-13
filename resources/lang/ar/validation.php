@@ -4,6 +4,7 @@ return [
     'email' => ' :attribute: يرجى إدخال بريد إلكتروني صالح.',
     'min_length' => 'يجب أن يكون هذا الحقل على الأقل :min_length أحرف.',
     'max_length' => 'يجب ألا يتجاوز هذا الحقل :max_length أحرف.',
-    'numeric' => 'يجب أن يكون هذا الحقل رقميًا.',
+    'integer' => ':attribute: يجب أن يكون هذا الحقل رقميًا.',
+    'string' => ':attribute: يجب ان يكون نص.',
     // Add more validation messages as needed
 ];

@@ -10,12 +10,45 @@ if (session_has('success')) {
 }
 ?>
 <div class="container">
-    <a href="<?= url('storage/images/image.png'); ?>" class="btn btn-primary">image</a>
+    <?php 
+    // var_dump(any_errors());
+        if (all_errors()) {
+            echo '<div class="alert alert-danger" role="alert"><ol>';
+            foreach( all_errors() as $error):
+                echo '<li>' . $error . '</li>';
+                // foreach( $errors as $error):
+                // endforeach;
+            endforeach;
+            echo "</ol></div>";
+        }
+    ?>
     <form action="<?= url('upload') ?>" method="post" enctype="multipart/form-data">
-      
-        <input class="form-control" type="text" name="email" >
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1"  name="email" placeholder="name@example.com">
+            <?php echo get_error('email');
+            ?>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput01" class="form-label">mobile</label>
+            <input type="text" class="form-control" id="exampleFormControlInput01" name="mobile" placeholder="00000000">
+            <?php 
+            foreach( any_errors('mobile') as $mobile):
+                echo '<p>' . $mobile . '</p>';
+            endforeach;
+            ?>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput01" class="form-label">address</label>
+            <input type="text" class="form-control" id="exampleFormControlInput01" name="address" placeholder="00000000">
+            <?php 
+            foreach( any_errors('address') as $address):
+                echo '<p>' . $address . '</p>';
+            endforeach;
+            ?>
+        </div>
         <input type="hidden" name="_method" value="post">
-        <input type="submit" value="Upload Image" name="submit" class="btn btn-primary">
+        <input type="submit" value="Upload Image" name="submit" class="btn btn-success">
     </form>
 </div>
 <?php
