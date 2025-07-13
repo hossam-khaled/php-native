@@ -19,4 +19,5 @@ return [
     'language' => 'اللغة',
     'arabic' => 'العربية',
     'english' => 'English',
+    'email' => 'البريد الالكتروني'
 ];
