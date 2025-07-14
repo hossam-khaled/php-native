@@ -9,41 +9,53 @@ if (!function_exists('validation')) {
      * @param array $rules The validation rules.
      * @return array An array of validation errors, if any.
      */
-    function validation( array $attributes, array $trans )
+    function validation(array $attributes, array $trans, $http_header = 'redirect')
     {
-        global $validations;
-        foreach( $attributes as $attribute => $rules) {
+        $validations = [];
+        $values = [];
+        foreach ($attributes as $attribute => $rules) {
 
             $value = request($attribute);
+            $values[$attribute] = $value;
             $errors = [];
             $final_attr = isset($trans[$attribute]) ? $trans[$attribute] : $attribute;
             foreach (explode('|', $rules) as $field => $rule) {
                 if ($rule == 'email' && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
                     $errors[] = str_replace(':attribute', $final_attr, lang('validation.email'));
-                }elseif( $rule == 'required' && ( empty( $value) || is_null($value ) ) ) {
-                    $errors[] = str_replace(':attribute', $final_attr, lang('validation.required') );
-                }elseif( $rule == 'integer' && !is_integer($value ) ) {
-                    $errors[] = str_replace(':attribute', $final_attr, lang('validation.integer') );
-                }elseif( $rule == 'string' && !is_string($value ) ) {
-                    $errors[] = str_replace(':attribute', $final_attr, lang('validation.string') );
+                } elseif ($rule == 'required' && (empty($value) || is_null($value))) {
+                    $errors[] = str_replace(':attribute', $final_attr, lang('validation.required'));
+                } elseif ($rule == 'integer' && !is_integer((int) $value)) {
+                    $errors[] = str_replace(':attribute', $final_attr, lang('validation.integer'));
+                } elseif ($rule == 'string' && !is_string($value)) {
+                    $errors[] = str_replace(':attribute', $final_attr, lang('validation.string'));
                 }
-                
             }
-            if( !empty( $errors ) && is_array($errors) && count( $errors ) > 0){
+            if (!empty($errors) && is_array($errors) && count($errors) > 0) {
                 $validations[$attribute] = $errors;
             }
         }
-            
-        session('errors',json_encode($validations));
 
+        
+        if (count($validations) > 0) {
+            if ($http_header == 'redirect') {
+                session('errors', json_encode($validations));
+                redirect('/');
+            }elseif($http_header == 'api'){
+                return json_encode($validations,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+            }
+        }else{
+            return $values;
+
+        }
     }
 }
 
 
 if (!function_exists('any_errors')) {
-    function any_errors($offset=null) {
-        $array = json_decode(session('errors'),true);
-        if(isset($array[$offset] )) {
+    function any_errors($offset = null)
+    {
+        $array = json_decode(session('errors'), true);
+        if (isset($array[$offset])) {
             $text = $array[$offset];
             // unset($array[$offset]);
             // session_flash('errors');
@@ -51,10 +63,10 @@ if (!function_exists('any_errors')) {
             //     session('errors',json_encode($array));
             // }
 
-            return is_array($text ) ?$text:[];
-        }elseif( !empty( $array ) && count($array ) > 0 ){
+            return is_array($text) ? $text : [];
+        } elseif (!empty($array) && count($array) > 0) {
             return $array;
-        }else{
+        } else {
             return [];
         }
         // return isset( $array[$offset] ) ? $array[$offset] : $array;
@@ -62,27 +74,29 @@ if (!function_exists('any_errors')) {
     }
 }
 
-if (!function_exists( 'all_errors')) {
-    function all_errors() {
+if (!function_exists('all_errors')) {
+    function all_errors()
+    {
         $all_errors = [];
-        foreach( any_errors() as $errors):
-            foreach( $errors as $error):
-                 $all_errors[] = $error ;
+        foreach (any_errors() as $errors):
+            foreach ($errors as $error):
+                $all_errors[] = $error;
             endforeach;
         endforeach;
         return $all_errors;
     }
 }
 
-if (!function_exists( 'get_error')) {
-    function get_error( $offset ) {
+if (!function_exists('get_error')) {
+    function get_error($offset)
+    {
         $error = '<ul>';
-        foreach( any_errors( $offset ) as $error_string):
-            if( is_string( $error_string ) ){
+        foreach (any_errors($offset) as $error_string):
+            if (is_string($error_string)) {
                 $error .= " <li> $error_string </li>";
             }
         endforeach;
         $error .= '</ul>';
-        return  !empty(any_errors( $offset ) ) ? $error : null;
+        return  !empty(any_errors($offset)) ? $error : null;
     }
 }

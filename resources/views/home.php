@@ -16,7 +16,9 @@ if (session_has('success')) {
     $validat_email = get_error('email');
     $validat_mobile = get_error('mobile');
     $validat_address = get_error('address');
-    session_flash('errors');
+    if (!empty(any_errors())) {
+        session_flash('errors');
+    }
     ?>
     <form action="<?= url('upload') ?>" method="post" enctype="multipart/form-data" class="needs-validation">
         <div class="mb-3">
