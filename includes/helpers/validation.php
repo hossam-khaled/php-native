@@ -45,11 +45,11 @@ if (!function_exists('any_errors')) {
         $array = json_decode(session('errors'),true);
         if(isset($array[$offset] )) {
             $text = $array[$offset];
-            unset($array[$offset]);
-            session_flash('errors');
-            if(!empty( $array )){
-                session('errors',json_encode($array));
-            }
+            // unset($array[$offset]);
+            // session_flash('errors');
+            // if(!empty( $array )){
+            //     session('errors',json_encode($array));
+            // }
 
             return is_array($text ) ?$text:[];
         }elseif( !empty( $array ) && count($array ) > 0 ){
@@ -81,9 +81,8 @@ if (!function_exists( 'get_error')) {
             if( is_string( $error_string ) ){
                 $error .= " <li> $error_string </li>";
             }
- 
         endforeach;
         $error .= '</ul>';
-        return $error;
+        return  !empty(any_errors( $offset ) ) ? $error : null;
     }
 }
