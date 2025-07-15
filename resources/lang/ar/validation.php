@@ -6,5 +6,8 @@ return [
     'max_length' => 'يجب ألا يتجاوز هذا الحقل :max_length أحرف.',
     'integer' => ':attribute: يجب أن تكون هذه القيمه رقم صحيح  .',
     'string' => ':attribute: يجب ان يكون نص.',
+    'numeric' => ':attribute: يجب أن تكون هذه القيمه رقم.',
+    'unique' => ':attribute: هذه القيمة مأخوذة بالفعل.',
+    
     // Add more validation messages as needed
 ];

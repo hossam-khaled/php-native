@@ -17,13 +17,14 @@ if (session_has('success')) {
     $validat_mobile = get_error('mobile');
     $validat_address = get_error('address');
     if (!empty(any_errors())) {
-        session_flash('errors');
+        end_errors();
     }
     ?>
+    
     <form action="<?= url('upload') ?>" method="post" enctype="multipart/form-data" class="needs-validation">
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Email address</label>
-            <input type="text" class="form-control <?= !empty($validat_email) ? 'is-invalid' : 'is-valid' ?>" name="email" placeholder="name@example.com" >
+            <input type="text" value="<?= old('email') ?>" class="form-control <?= !empty($validat_email) ? 'is-invalid' : 'is-valid' ?>" name="email" placeholder="name@example.com" >
 
             <div class="<?= !empty($validat_email) ? 'invalid-feedback' : 'valid-feedback' ?>">
                 <?= $validat_email; ?>
@@ -31,14 +32,14 @@ if (session_has('success')) {
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput01" class="form-label">mobile</label>
-            <input type="text" class="form-control <?= !empty($validat_mobile) ? 'is-invalid' : 'is-valid' ?>" name="mobile" placeholder="00000000" >
+            <input type="text" value="<?= old('mobile') ?>" class="form-control <?= !empty($validat_mobile) ? 'is-invalid' : 'is-valid' ?>" name="mobile" placeholder="00000000" >
             <div class="<?= !empty($validat_mobile) ? 'invalid-feedback' : 'valid-feedback' ?>">
                 <?= $validat_mobile; ?>
             </div>
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput01" class="form-label">address</label>
-            <input type="text" class="form-control <?= !empty($validat_address) ? 'is-invalid' : 'is-valid' ?>" name="address" placeholder="adress" >
+            <input type="text" value="<?= old('address') ?>" class="form-control <?= !empty($validat_address) ? 'is-invalid' : 'is-valid' ?>" name="address" placeholder="adress" >
             <div class="<?= !empty($validat_address) ? 'invalid-feedback' : 'valid-feedback' ?>">
                 <?= $validat_address; ?>
             </div>

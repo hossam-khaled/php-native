@@ -24,10 +24,12 @@ if (!function_exists('validation')) {
                     $errors[] = str_replace(':attribute', $final_attr, lang('validation.email'));
                 } elseif ($rule == 'required' && (empty($value) || is_null($value))) {
                     $errors[] = str_replace(':attribute', $final_attr, lang('validation.required'));
-                } elseif ($rule == 'integer' && !is_integer((int) $value)) {
+                } elseif ($rule == 'integer' && !filter_var($value, FILTER_VALIDATE_INT)) {
                     $errors[] = str_replace(':attribute', $final_attr, lang('validation.integer'));
                 } elseif ($rule == 'string' && !is_string($value)) {
                     $errors[] = str_replace(':attribute', $final_attr, lang('validation.string'));
+                } elseif ($rule == 'numeric' && !is_numeric($value)) {
+                    $errors[] = str_replace(':attribute', $final_attr, lang('validation.numeric'));
                 }
             }
             if (!empty($errors) && is_array($errors) && count($errors) > 0) {
@@ -35,17 +37,17 @@ if (!function_exists('validation')) {
             }
         }
 
-        
+
         if (count($validations) > 0) {
             if ($http_header == 'redirect') {
                 session('errors', json_encode($validations));
+                session('old', json_encode($values));
                 redirect('/');
-            }elseif($http_header == 'api'){
-                return json_encode($validations,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+            } elseif ($http_header == 'api') {
+                return json_encode($validations, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
             }
-        }else{
+        } else {
             return $values;
-
         }
     }
 }
@@ -98,5 +100,23 @@ if (!function_exists('get_error')) {
         endforeach;
         $error .= '</ul>';
         return  !empty(any_errors($offset)) ? $error : null;
+    }
+}
+if (!function_exists('end_errors')) {
+    function end_errors()
+    {
+        session_flash('errors');
+    }
+}
+if (!function_exists('old')) {
+    function old($request = null)
+    {
+        $old_values = json_decode(session('old'), true);
+        // var_dump($old_values[$request]);
+        if (is_array($old_values) && in_array($request, array_keys($old_values))) {
+            return isset($old_values[$request]) ? $old_values[$request] : null;
+        } elseif (is_null($request)) {
+            return $old_values;
+        }
     }
 }

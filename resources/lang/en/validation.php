@@ -6,5 +6,7 @@ return [
     'max_length' => 'This field must not exceed :max_length characters.',
     'integer' => ':attribute: This field must be numeric.',
     'string' => ':attribute: This field must be string',
+    'numeric' => ':attribute: This field must be numeric.',
+    'unique' => ':attribute: This value has already been taken.',
     // Add more validation messages as needed
 ];

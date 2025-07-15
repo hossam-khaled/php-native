@@ -10,16 +10,16 @@
 $data = validation(
     [
         'email' => 'required|email',
-        'mobile' => 'required|integer',
+        'mobile' => 'required|numeric',
         'address' => 'required|string',
     ],
     [
         'email' => lang('main.email'),
         'mobile' => lang('main.mobile'),
         'address' => lang('main.address'),
-    ],
-    '11'
+    ]
 );
 
 
 var_dump( $data );
+session_flash('old');
