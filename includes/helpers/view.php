@@ -10,26 +10,33 @@ if (!function_exists('view')) {
      */
     function view(string $path,array $data = [])
     {   
-        // echo 'view <br>';
-        // $full_path = '';
-        // $current_path = explode('.', $path);
-        // foreach ($current_path as $current) {
-        //     if (end($current_path) != $current) {
-        //         $full_path .= '/' . $current;
-        //     }
-            
-        // }
-        // $viewPath = config('view.path') . '/' . $full_path . '/' . end($current_path) . '.php';
         $viewPath = config('view.path') . '/' . str_replace('.','/', $path ) . '.php';
 
-        // var_dump($viewPath);
         if (file_exists($viewPath)) {
             extract($data);
-            require $viewPath;
+            $view = $viewPath;
         } else {
-            include_once config('view.path') . '/404.php';
+            $view = config('view.path') . '/404.php';
         }
+
+        view_engine( $view );
     }
 }
 
 // view('home', ['name' => 'John Doe']);
+
+if (!function_exists('view_engine')) {
+    function view_engine( string $view ) {
+        $file = file_get_contents($view);
+        $file = str_replace('{{', '<?php echo', $file);
+        $file = str_replace('}}', ';?>', $file);
+        $file = str_replace('@php', '<?php', $file);
+        $file = str_replace('@endphp', '?>', $file);
+        $file_path = explode('/', $view);
+        $file_name = end( $file_path );
+        $save_to_storage = base_path('storage/views/'.$file_name);
+        file_put_contents($save_to_storage, $file);
+        include $save_to_storage;
+        
+    }
+}
