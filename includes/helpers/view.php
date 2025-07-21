@@ -31,12 +31,12 @@ if (!function_exists('view_engine')) {
         $file_path = explode('/', $view);
         $file_name = end($file_path);
         $save_to_storage = base_path('storage/views/' . $file_name);
-        if (! file_exists($save_to_storage)) {
+        // if (! file_exists($save_to_storage)) {
             $file = file_get_contents($view);
-            $file = str_replace('{{', '<?php echo', $file);
-            $file = str_replace('}}', ';?>', $file);
-            $file = str_replace('@php', '<?php', $file);
-            $file = str_replace('@endphp', '?>', $file);
+            $file = str_replace('{{', '<?php echo ', $file);
+            $file = str_replace('}}', ' ;?>', $file);
+            $file = str_replace('@php', '<?php ', $file);
+            $file = str_replace('@endphp', ' ?>', $file);
 
             $file = preg_replace('/@if\((.*)\)/i', '<?php if($1): ?>', $file);
             $file = preg_replace('/@endif/i', '<?php endif; ?>', $file);
@@ -44,7 +44,7 @@ if (!function_exists('view_engine')) {
             $file = preg_replace('/@foreach\((.*?) as (.*?)\)+/i', '<?php foreach($1 as $2): ?>', $file);
             $file = preg_replace('/@endforeach/i', '<?php endforeach; ?>', $file);
             file_put_contents($save_to_storage, $file);
-        }
+        // }
 
 
         include $save_to_storage;

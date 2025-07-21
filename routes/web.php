@@ -1,5 +1,5 @@
 <?php
-
+include 'admin.php';
 // route_get('home', 'home');
 route_get('/','home');
 route_get('users','user');
