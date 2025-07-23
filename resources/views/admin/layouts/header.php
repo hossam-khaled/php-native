@@ -1,5 +1,15 @@
-<!DOCTYPE html>
-<html lang="en" data-bs-theme="auto">
+<?php
+global $lang;
+if (session_has('admin_lang')) {
+    $lang = session('admin_lang');
+    $dir = session('admin_lang') == 'ar' ? 'rtl' : 'ltr';
+} else {
+    $lang = 'en';
+    $dir = 'ltr';
+}
+?>
+<!doctype html>
+<html lang="<?= $lang ?>" data-bs-theme="auto" dir="<?= $dir ?>">
 
 <head>
     <meta charset="utf-8">
@@ -11,11 +21,12 @@
     <meta name="theme-color" content="#712cf9">
     <link href="{{ url('assets/admin') }}/css/dashboard.css" rel="stylesheet">
     <link href="{{ url('assets/admin') }}/css/style.css" rel="stylesheet">
+    <link href="{{ url('assets/admin') }}/css/header.css" rel="stylesheet">
 
 </head>
 
 
-<body> 
+<body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
         <symbol id="check2" viewBox="0 0 16 16">
             <path
@@ -151,5 +162,5 @@
             </path>
         </symbol>
     </svg>
-    <?php view('admin.layouts.navbar');?>
-    <?php view('admin.layouts.sidebar');?>
+    <?php view('admin.layouts.navbar'); ?>
+    <?php view('admin.layouts.sidebar'); ?>
