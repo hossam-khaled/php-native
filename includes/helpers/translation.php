@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Retrieves a translated string based on the given key and replaces placeholders with provided values.
  *
@@ -17,8 +18,9 @@ if (!function_exists('lang')) {
         } else {
             $locale = !empty(config('lang.default')) ? config('lang.default') : config('lang.fallback');
         }
+        // var_dump($locale);
         $trans = explode('.', $key);
-        $path = config('lang.path') . '/' . $locale . '/'. $trans[0] .'.php';
+        $path = config('lang.path') . '/' . $locale . '/' . $trans[0] . '.php';
         // return $path;
         if (!file_exists($path)) {
             return "Translation file for locale '{$locale}' not found.";
@@ -33,7 +35,7 @@ if (!function_exists('lang')) {
         $translation = $translations[$trans[1]];
 
         foreach ($replace as $search => $value) {
-            $translation = str_replace( $search, $value, $translation);
+            $translation = str_replace($search, $value, $translation);
             // var_dump($translation, $value);
         }
 
@@ -53,4 +55,3 @@ if (!function_exists('set_locale')) {
         session('locale', $lang);
     }
 }
-

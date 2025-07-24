@@ -17,7 +17,7 @@ if (!function_exists('route_get')) {
         global $routes;
         $routes['GET'][] = [
             'view' => $view,
-            'sagment' => '/' . public_() . '/'. ltrim($sagment, '/'),
+            'sagment' => '/' . public_() . '/' . ltrim($sagment, '/'),
         ];
     }
 }
@@ -38,7 +38,7 @@ if (!function_exists('route_post')) {
         global $routes;
         $routes['POST'][] = [
             'view' => $view,
-            'sagment' => '/' . public_() . '/'. ltrim($sagment, '/'),
+            'sagment' => '/' . public_() . '/' . ltrim($sagment, '/'),
         ];
     }
 }
@@ -77,12 +77,12 @@ if (!function_exists('route_init')) {
         }
         if (isset($_POST) && isset($_POST['_method']) && strtolower($_POST['_method']) == 'post' && count($_POST) > 0) {
             foreach ($POST_ROUTES as $rpost) {
-                if ($rpost['sagment'] == $sagment_uri ) {
+                if ($rpost['sagment'] == $sagment_uri) {
                     view($rpost['view']);
                 }
             }
             if (!is_null(sagment()) && !in_array(sagment(), array_column($POST_ROUTES, 'sagment'))) {
-                echo "<h1 style='color: red;'> 404 Page Not Found</h1>";
+                view('404');
                 exit;
             }
         }
@@ -105,7 +105,6 @@ if (!function_exists('redirect')) {
         header("Location: $url");
         exit;
     }
-
 }
 if (!function_exists('url')) {
     /**
@@ -126,7 +125,7 @@ if (!function_exists('url')) {
         } else {
             $base_url .= $_SERVER['HTTP_HOST'] . '/';
         }
-        return rtrim($base_url, '/') . '/' . public_() . '/'. ltrim($path, '/');
+        return rtrim($base_url, '/') . '/' . public_() . '/' . ltrim($path, '/');
     }
 }
 if (!function_exists('sagment')) {

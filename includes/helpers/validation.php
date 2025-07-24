@@ -9,7 +9,7 @@ if (!function_exists('validation')) {
      * @param array $rules The validation rules.
      * @return array An array of validation errors, if any.
      */
-    function validation(array $attributes, array $trans, $http_header = 'redirect')
+    function validation(array $attributes, array $trans, $http_header = 'redirect', $back = null)
     {
         $validations = [];
         $values = [];
@@ -42,7 +42,11 @@ if (!function_exists('validation')) {
             if ($http_header == 'redirect') {
                 session('errors', json_encode($validations));
                 session('old', json_encode($values));
-                redirect('/');
+                if (!is_null($back)) {
+                    redirect($back);
+                } else {
+                    redirect(ADMIN . '/login');
+                }
             } elseif ($http_header == 'api') {
                 return json_encode($validations, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
             }

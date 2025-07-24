@@ -1,8 +1,11 @@
 <?php
 global $lang;
-if (session_has('admin_lang')) {
-    $lang = session('admin_lang');
-    $dir = session('admin_lang') == 'ar' ? 'rtl' : 'ltr';
+if (!session_has('admin')) {
+    redirect('/admin/login');
+}
+if (session_has('locale')) {
+    $lang = session('locale');
+    $dir = session('locale') == 'ar' ? 'rtl' : 'ltr';
 } else {
     $lang = 'en';
     $dir = 'ltr';
