@@ -99,19 +99,33 @@ if (session_has('locale')) {
         </ul>
     </div>
     <main class="form-signin w-100 m-auto text-center">
-        <form action="{{ url(ADMIN . '/do/login') }}" method="post" class="mb-3">
+            @php
+    // var_dump(any_errors());
+    //echo get_error();'
+    $validat_email = get_error('email');
+    $validat_password = get_error('password');
+
+
+    @endphp
+        <form action="{{ url(ADMIN . '/do/login') }}" method="post" enctype="multipart/form-data" class="needs-validation">
             <input type="hidden" name="_method" value="post" />
             <img class="mb-4" src="{{ url('assets/admin') }}/assets/brand/bootstrap-logo.svg" alt="" width="72"
                 height="57" />
             <h1 class="h3 mb-3 fw-normal">{{ lang('admin.login_page_title')}}</h1>
+            <div class="<?= !empty($validat_email) ? 'invalid-feedback' : 'valid-feedback' ?>">
+                <?= $validat_email; ?>
+            </div>
             <div class="form-floating">
-                <input type="email" name="email" class="form-control" id="floatingInput"
-                    placeholder="name@example.com" />
+                <input type="text" id="floatingInput" value="<?= old('email') ?>" class="form-control <?= !empty($validat_email) ? 'is-invalid' : '' ?>" name="email" placeholder="name@example.com">
+
                 <label for="floatingInput">{{ lang('admin.email')}}</label>
+            </div>
+            <div class="<?= !empty($validat_password) ? 'invalid-feedback' : 'valid-feedback' ?>">
+                <?= $validat_password; ?>
             </div>
             <div class="form-floating">
                 <input type="password" name="password" class="form-control" id="floatingPassword"
-                    placeholder="Password" />
+                    placeholder="Password" value="<?= old('password') ?>" />
                 <label for="floatingPassword">{{ lang('admin.password')}}</label>
             </div>
             <div class="form-check text-start my-3">
