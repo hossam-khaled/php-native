@@ -107,6 +107,18 @@ if (session_has('locale')) {
 
 
     @endphp
+      @if( any_errors() )
+    <div class="alert alert-danger" role="alert">
+        <ol>
+            @foreach( all_errors() as $error)
+               <li> @php echo $error @endphp </li>
+            @endforeach
+        </ol>
+    </div>
+    @php
+    end_errors();
+    @endphp
+    @endif
         <form action="{{ url(ADMIN . '/do/login') }}" method="post" enctype="multipart/form-data" class="needs-validation">
             <input type="hidden" name="_method" value="post" />
             <img class="mb-4" src="{{ url('assets/admin') }}/assets/brand/bootstrap-logo.svg" alt="" width="72"
@@ -124,7 +136,7 @@ if (session_has('locale')) {
                 <?= $validat_password; ?>
             </div>
             <div class="form-floating">
-                <input type="password" name="password" class="form-control" id="floatingPassword"
+                <input type="password" name="password" class="form-control  <?= !empty($validat_password) ? 'is-invalid' : '' ?>" id="floatingPassword"
                     placeholder="Password" value="<?= old('password') ?>" />
                 <label for="floatingPassword">{{ lang('admin.password')}}</label>
             </div>

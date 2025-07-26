@@ -23,4 +23,6 @@ return [
     'email' => 'Email',
     'mobile' => 'Mobile Phone',
     'address' => 'Address',
+    'password' => 'Password',
+    'remember_me' => 'Remember Me',
 ];

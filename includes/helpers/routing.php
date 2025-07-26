@@ -106,6 +106,14 @@ if (!function_exists('redirect')) {
         exit;
     }
 }
+
+if (!function_exists('back')) {
+    function back()
+    {
+        header("Location:" . $_SERVER['HTTP_REFERER']);
+        exit;
+    }
+}
 if (!function_exists('url')) {
     /**
      * Generates a full URL based on the given path and the current server environment.

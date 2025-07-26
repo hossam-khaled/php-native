@@ -45,7 +45,8 @@ if (!function_exists('validation')) {
                 if (!is_null($back)) {
                     redirect($back);
                 } else {
-                    redirect(ADMIN . '/login');
+                    back();
+                    // redirect(ADMIN . '/login');
                 }
             } elseif ($http_header == 'api') {
                 return json_encode($validations, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);

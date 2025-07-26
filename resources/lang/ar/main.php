@@ -21,5 +21,8 @@ return [
     'english' => 'English',
     'email' => 'البريد الالكتروني',
     'mobile' => 'الهاتف المحمول',
-    'address' => 'العنوان'
+    'address' => 'العنوان',
+    'password' => 'كلمة المرور',
+    'remember_me' => 'تذكرني',
+    
 ];

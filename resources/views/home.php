@@ -10,6 +10,13 @@ if (session_has('success')) {
 }
 ?>
 <div class="container">
+    @php
+    // var_dump(any_errors());
+    //echo get_error();'
+    $validat_email = get_error('email');
+    $validat_mobile = get_error('mobile');
+    $validat_address = get_error('address');
+    @endphp
     @if( any_errors() )
     <div class="alert alert-danger" role="alert">
         <ol>
@@ -18,21 +25,12 @@ if (session_has('success')) {
             @endforeach
         </ol>
     </div>
-
+    @php
+    end_errors();
+    @endphp
     @endif
 
 
-    @php
-    // var_dump(any_errors());
-    //echo get_error();'
-    $validat_email = get_error('email');
-    $validat_mobile = get_error('mobile');
-    $validat_address = get_error('address');
-
-
-
-
-    @endphp
     <form action="<?= url('upload') ?>" method="post" enctype="multipart/form-data" class="needs-validation">
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Email address</label>

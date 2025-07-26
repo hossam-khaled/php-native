@@ -3,15 +3,14 @@ $data = validation(
     [
         'email' => 'required|email',
         'password' => 'required',
+        'remember_me' => '',
     ],
     [
         'email' => lang('main.email'),
         'password' => lang('main.password'),
     ],
-    'redirect',
-    ADMIN . '/login'
 );
 
 
-var_dump($data);
+var_dump(bcrypt($data['password']));
 session_flash('old');
