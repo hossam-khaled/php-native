@@ -23,4 +23,5 @@ return [
     'dark' => 'Dark',
     'auto' => 'Auto',
     'login_page_title' => 'Sign In to Your Admin Dashboard',
+    'login_failed' => 'login failed'
 ];

@@ -11,6 +11,16 @@ $data = validation(
     ],
 );
 
+$find = db_search('users', "where email LIKE '%". $data['email']."%'");
+var_dump($find['password'], $data['password']);
+if (empty($find) || !verify_bcrypt($data['password'], $find['password']) ) {
 
-var_dump(bcrypt($data['password']));
-session_flash('old');
+    session('error_login',lang('admin.login_failed'));
+    back();
+} else {
+    session('admin', json_encode($find));
+    redirect(ADMIN );
+    
+}
+// var_dump(bcrypt($data['password']));
+// session_flash('old');

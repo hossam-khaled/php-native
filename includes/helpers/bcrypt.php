@@ -23,7 +23,7 @@ if(!function_exists('verify_bcrypt')) {
      * @param string $hash The hashed password to verify against.
      * @return bool True if the password matches, false otherwise.
      */
-    function verify_bcrypt(string $password,string $hash)
+    function verify_bcrypt(string $password,string $hash):bool
     {
         return password_verify($password, $hash);
     }

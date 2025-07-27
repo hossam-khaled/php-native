@@ -1,6 +1,6 @@
 <?php
 global $lang;
-if (!session_has('admin')) {
+if (!auth()) {
     redirect('/admin/login');
 }
 if (session_has('locale')) {

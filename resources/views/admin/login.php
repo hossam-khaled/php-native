@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <?php
-
+if (auth()) {
+    redirect(ADMIN);
+}
 if (session_has('locale')) {
     $lang = session('locale');
     $dir = session('locale') == 'ar' ? 'rtl' : 'ltr';
@@ -99,26 +101,32 @@ if (session_has('locale')) {
         </ul>
     </div>
     <main class="form-signin w-100 m-auto text-center">
-            @php
-    // var_dump(any_errors());
-    //echo get_error();'
-    $validat_email = get_error('email');
-    $validat_password = get_error('password');
+        @php
+        // var_dump(any_errors());
+        //echo get_error();'
+        $validat_email = get_error('email');
+        $validat_password = get_error('password');
 
 
-    @endphp
-      @if( any_errors() )
-    <div class="alert alert-danger" role="alert">
-        <ol>
-            @foreach( all_errors() as $error)
-               <li> @php echo $error @endphp </li>
-            @endforeach
-        </ol>
-    </div>
-    @php
-    end_errors();
-    @endphp
-    @endif
+        @endphp
+        @if( session_has('error_login') )
+        <div class="alert alert-danger" role="alert">
+           {{ session_flash('error_login')}}
+
+        </div>
+        @endif
+        @if( any_errors() )
+        <div class="alert alert-danger" role="alert">
+            <ol>
+                @foreach( all_errors() as $error)
+                <li> @php echo $error @endphp </li>
+                @endforeach
+            </ol>
+        </div>
+        @php
+        end_errors();
+        @endphp
+        @endif
         <form action="{{ url(ADMIN . '/do/login') }}" method="post" enctype="multipart/form-data" class="needs-validation">
             <input type="hidden" name="_method" value="post" />
             <img class="mb-4" src="{{ url('assets/admin') }}/assets/brand/bootstrap-logo.svg" alt="" width="72"
@@ -141,8 +149,7 @@ if (session_has('locale')) {
                 <label for="floatingPassword">{{ lang('admin.password')}}</label>
             </div>
             <div class="form-check text-start my-3">
-                <input class="form-check-input" type="checkbox" value="remember-me" id="checkDefault"
-                    name="remember_me" />
+                <input class="form-check-input" type="checkbox" value="remember-me" id="checkDefault" checked name="remember_me" />
                 <label class="form-check-label" for="checkDefault">
                     {{ lang('admin.remember_me')}}
                 </label>
