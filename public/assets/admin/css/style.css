@@ -78,3 +78,7 @@
 .bd-mode-toggle .dropdown-menu .active .bi {
     display: block !important
 }
+
+.offcanvas-md .offcanvas-body {
+    min-height: 750px
+}

@@ -14,17 +14,14 @@
                 </svg> </button> </li> 
     </ul> -->
     <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">Home</a>
-        </li>
-        <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
         @if( $lang == 'ar')
-        <li class="nav-item"><a href="{{url( ADMIN .'/lang?lang=en')}}" class="nav-link">en</a></li>
+        <li class="nav-item ">
+            <a href="{{url( ADMIN .'/lang?lang=en')}}" class="nav-link active rounded-0 p-3">EN</a>
+        </li>
         @eles
-        <li class="nav-item"><a href="{{url( ADMIN .'/lang?lang=ar')}}" class="nav-link">ع</a></li>
+        <li class="nav-item ">
+            <a href="{{url( ADMIN .'/lang?lang=ar')}}" class="nav-link active rounded-0 p-3">ع</a>
+        </li>
         @endif
     </ul>
     </ul>

@@ -136,6 +136,21 @@ if (!function_exists('url')) {
         return rtrim($base_url, '/') . '/' . public_() . '/' . ltrim($path, '/');
     }
 }
+
+
+if (!function_exists('aurl')) {
+    function aurl($path = '')
+    {
+        $base_url = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+        if (is_localhost()) {
+            $base_url .= 'localhost/php-native/';
+        } else {
+            $base_url .= $_SERVER['HTTP_HOST'] . '/';
+        }
+        return rtrim($base_url, '/') . '/' . public_() . '/' . ADMIN . '/' . ltrim($path, '/');
+    }
+}
+
 if (!function_exists('sagment')) {
     /**
      * Retrieves and processes the current request URI segment.

@@ -37,7 +37,6 @@ if (!function_exists('validation')) {
             }
         }
 
-
         if (count($validations) > 0) {
             if ($http_header == 'redirect') {
                 session('errors', json_encode($validations));

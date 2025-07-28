@@ -23,5 +23,13 @@ return [
     'dark' => 'Dark',
     'auto' => 'Auto',
     'login_page_title' => 'Sign In to Your Admin Dashboard',
-    'login_failed' => 'login failed'
+    'login_failed' => 'login failed',
+    'category_name' => 'Category Name',
+    'created_image' => 'Attached Image',
+    'created_at' => 'Created At',
+    'updated_at' => 'Updated At',
+    'action' => 'Action',
+    'add_category' => 'Add New Category',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
 ];

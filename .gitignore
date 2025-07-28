@@ -1,3 +1,3 @@
 public/storage/
-storage/views/*
-storage/sessions/*
+storage/views/
+storage/sessions/
