@@ -14,15 +14,19 @@ if (!function_exists('validation')) {
         $validations = [];
         $values = [];
         foreach ($attributes as $attribute => $rules) {
-
+            
             $value = request($attribute);
             $values[$attribute] = $value;
+            // if( $attribute == 'icon'){
+            //     var_dump(getimagesize($value['tmp_name'] ));
+            //     die;
+            // }
             $errors = [];
             $final_attr = isset($trans[$attribute]) ? $trans[$attribute] : $attribute;
             foreach (explode('|', $rules) as $field => $rule) {
                 if ($rule == 'email' && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
                     $errors[] = str_replace(':attribute', $final_attr, lang('validation.email'));
-                } elseif ($rule == 'required' && (empty($value) || is_null($value))) {
+                } elseif ($rule == 'required' && (empty($value) || is_null($value) || ( isset($value['tmp_name']) && empty( $value['tmp_name'] ) ) )) {
                     $errors[] = str_replace(':attribute', $final_attr, lang('validation.required'));
                 } elseif ($rule == 'integer' && !filter_var($value, FILTER_VALIDATE_INT)) {
                     $errors[] = str_replace(':attribute', $final_attr, lang('validation.integer'));
@@ -30,6 +34,8 @@ if (!function_exists('validation')) {
                     $errors[] = str_replace(':attribute', $final_attr, lang('validation.string'));
                 } elseif ($rule == 'numeric' && !is_numeric($value)) {
                     $errors[] = str_replace(':attribute', $final_attr, lang('validation.numeric'));
+                } elseif ($rule == 'image' && getimagesize($value['tmp_name'] ) === false) {
+                    $errors[] = str_replace(':attribute', $final_attr, lang('validation.image'));
                 }
             }
             if (!empty($errors) && is_array($errors) && count($errors) > 0) {

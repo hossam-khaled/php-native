@@ -70,9 +70,11 @@ if (!function_exists('route_init')) {
         $sagment_uri = sagment();
         $GET_ROUTES = $routes['GET'] ?? [];
         $POST_ROUTES = $routes['POST'] ?? [];
-        foreach ($GET_ROUTES as $rget) {
-            if ($rget['sagment'] == $sagment_uri) {
-                view($rget['view']);
+        if (!isset($_POST['_method'])) {
+            foreach ($GET_ROUTES as $rget) {
+                if ($rget['sagment'] == $sagment_uri) {
+                    view($rget['view']);
+                }
             }
         }
         if (isset($_POST) && isset($_POST['_method']) && strtolower($_POST['_method']) == 'post' && count($_POST) > 0) {
@@ -101,8 +103,12 @@ if (!function_exists('redirect')) {
      */
     function redirect($path)
     {
-        $url = url($path);
-        header("Location: $url");
+        $path = parse_url($path);
+        if (isset($path['scheme']) and isset($path['host'])) {
+            header("Location: ". $path['scheme'] .'://'.$path['host'] . $path['path']);
+        }else{
+            header("Location: ". url($path));
+        }
         exit;
     }
 }
@@ -110,7 +116,7 @@ if (!function_exists('redirect')) {
 if (!function_exists('back')) {
     function back()
     {
-        header("Location:" . $_SERVER['HTTP_REFERER']);
+        header(header: "Location:" . $_SERVER['HTTP_REFERER']);
         exit;
     }
 }

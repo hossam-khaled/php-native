@@ -15,7 +15,7 @@ return [
     'array' => ':attribute: This field must be an array.',
     'object' => ':attribute: This field must be an object.',
     'file' => ':attribute: This field must be a file.',
-    'image' => ':attribute: This field must be an image.',
+    'image' => ':attribute: يجب أن يكون هذا الحقل صورة.',
     'url' => ':attribute: This field must be a valid URL.',
     'ip' => ':attribute: This field must be a valid IP address.', 
     // Add more validation messages as needed

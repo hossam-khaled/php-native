@@ -1,6 +1,6 @@
 <?php
 view('admin.layouts.header', ['title' => lang('admin.categories')]);
-$categories = db_paginate('categories', '', 1);
+$categories = db_paginate('categories', '', 10);
 // var_dump(mysqli_fetch_assoc($categories['query']));
 // die;
 ?>

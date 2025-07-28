@@ -11,7 +11,7 @@ $icon = get_error('icon');
 $description = get_error('description');
 @endphp
 <?php
-// var_dump($name);
+// var_dump(parse_url(url(ADMIN)));
 // die;
 ?>
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -35,21 +35,21 @@ $description = get_error('description');
             <a href="{{aurl('categories')}}" class="btn btn-info">{{lang('admin.categories')}}</a>
         </h1>
     </div>
-    <form action="{{aurl('categories/add')}}" method="post">
+    <form action="{{aurl('categories/create')}}" method="post"  enctype="multipart/form-data">
         <input type="hidden" name="_method" value="post">
         <div class="mb-3">
             <label for="name" class="form-label">{{lang('cat.name')}}</label>
-            <input type="text" class="form-control <?= !empty($name) ? 'is-invalid' : 'is-valid' ?>"
+            <input type="text" class="form-control <?= !empty($name) ? 'is-invalid' : '' ?>"
                 value="<?= old('name') ?>" id="name" name="name" required>
         </div>
         <div class="mb-3">
             <label for="icon" class="form-label">{{lang('cat.icon')}}</label>
-            <input type="file" class="form-control <?= !empty($icon) ? 'is-invalid' : 'is-valid' ?>"
+            <input type="file" class="form-control <?= !empty($icon) ? 'is-invalid' : '' ?>"
                 value="<?= old('icon') ?>" id="icon" name="icon">
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">{{lang('cat.description')}}</label>
-            <textarea class="form-control <?= !empty($description) ? 'is-invalid' : 'is-valid' ?>" id="description"
+            <textarea class="form-control <?= !empty($description) ? 'is-invalid' : '' ?>" id="description"
                 name="description" rows="3"><?= old('description') ?></textarea>
         </div>
         <button type="submit" class="btn btn-primary">{{lang('cat.create')}}</button>
