@@ -33,4 +33,5 @@ return [
     'add_category' => 'إضافة قسم جديد',
     'edit' => 'تعديل',
     'delete' => 'حذف',
+    'show' => 'عرض'
 ];

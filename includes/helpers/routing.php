@@ -105,7 +105,7 @@ if (!function_exists('redirect')) {
     {
         $check_path = parse_url($path);
         if (isset($check_path['scheme']) and isset($check_path['host'])) {
-            header("Location: ". $path['scheme'] .'://'.$path['host'] . $path['path']);
+            header("Location: ". $path );
         }else{
             header("Location: ". url($path));
         }

@@ -34,7 +34,7 @@ if (!function_exists('validation')) {
                     $errors[] = str_replace(':attribute', $final_attr, lang('validation.string'));
                 } elseif ($rule == 'numeric' && !is_numeric($value)) {
                     $errors[] = str_replace(':attribute', $final_attr, lang('validation.numeric'));
-                } elseif ($rule == 'image' && getimagesize($value['tmp_name'] ) === false) {
+                } elseif ($rule == 'image' && isset($value['tmp_name']) && ( !empty($value['tmp_name'] ) && getimagesize($value['tmp_name'] ) === false )) {
                     $errors[] = str_replace(':attribute', $final_attr, lang('validation.image'));
                 }
             }

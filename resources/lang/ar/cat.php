@@ -7,4 +7,5 @@ return [
     'description' => 'وصف الفئة',
     'categories' => 'الاقسام',
     'create' => 'إضافة فئة جديدة',
+    
 ];
