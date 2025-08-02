@@ -1,11 +1,12 @@
 <?php
-view('admin.layouts.header', ['title' => lang('admin.show')]);
+view('admin.layouts.header', ['title' => lang('admin.categories') . '-' . lang('admin.show')]);
 // var_dump(mysqli_fetch_assoc($categories['query']));
 // die;
 $category = db_find('categories', request('id'));
-if (empty($category)) {
-    redirect(aurl('categories'));
-}
+// if (empty($category)) {
+//     redirect(aurl('categories'));
+// }
+redirect_if(empty($category), aurl('categories'));
 // var_dump($category);
 $icon_url = is_null($category['icon']) ? '' : $category['icon'];
 ?>
@@ -23,7 +24,8 @@ $icon_url = is_null($category['icon']) ? '' : $category['icon'];
     </div>
     <div class="mb-3">
         <label for="icon" class="form-label">{{lang('cat.icon')}}</label>
-        <img src="{{ storage_url( $icon_url ) }}" alt="{{$category['name']}}" srcset="{{ storage_url( $icon_url ) }}" data-bs-toggle="modal" data-bs-target="#showImage" width="150px" height="100px">
+        <img src="{{ storage_url( $icon_url ) }}" alt="{{$category['name']}}" srcset="{{ storage_url( $icon_url ) }}"
+            data-bs-toggle="modal" data-bs-target="#showImage" width="150px" height="100px">
 
 
         <!-- Modal -->
@@ -31,7 +33,9 @@ $icon_url = is_null($category['icon']) ? '' : $category['icon'];
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <img src="{{ storage_url( $icon_url ) }}" alt="{{$category['name']}}" srcset="{{ storage_url( $icon_url ) }}" data-bs-toggle="modal" data-bs-target="#showImage" width="100%" height="80%">
+                        <img src="{{ storage_url( $icon_url ) }}" alt="{{$category['name']}}"
+                            srcset="{{ storage_url( $icon_url ) }}" data-bs-toggle="modal" data-bs-target="#showImage"
+                            width="100%" height="80%">
                     </div>
                 </div>
             </div>

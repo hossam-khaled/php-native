@@ -32,5 +32,7 @@ return [
     'add_category' => 'Add New Category',
     'edit' => 'Edit',
     'delete' => 'Delete',
-    'show' => 'Show'
+    'show' => 'Show',
+    'save' => 'Save',
+    'cancel' => 'Cancel',
 ];

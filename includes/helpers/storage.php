@@ -19,10 +19,13 @@ if (!function_exists('storage')) {
     }
 }
 if (!function_exists('delete_file')) {
-    function delete_file($path)
+    function delete_file($to_path)
     {
+        $path = config('files.storage_files_path') . $to_path;
+
         if (file_exists($path)) {
-            return unlink($path);
+            unlink($path);
+            return true;
         }
         return false; // File does not exist
 
@@ -49,7 +52,7 @@ if (!function_exists('remove_folder')) {
     }
 }
 if (!function_exists('store_file')) {
-    function store_file($from, $to):bool|string
+    function store_file($from, $to): bool|string
     {
         if (isset($from['tmp_name'])) {
 
@@ -71,15 +74,15 @@ if (!function_exists('store_file')) {
 if (!function_exists('file_exte')) {
     function file_exte(array $file_name): array
     {
-        if( !empty( $file_name )){
+        if (!empty($file_name)) {
 
             $fext = explode('.', $file_name['name']);
-            $file_ext = end( $fext );
-            $hash_name= md5( $file_name['name'] ) . rand(000,999) . '.'. $file_ext;
+            $file_ext = end($fext);
+            $hash_name = md5($file_name['name']) . rand(000, 999) . '.' . $file_ext;
             return [
                 'name' => $file_name['name'],
-                'hash_name'=> $hash_name,
-                'ext'=> $file_ext
+                'hash_name' => $hash_name,
+                'ext' => $file_ext
             ];
         }
 
@@ -88,8 +91,8 @@ if (!function_exists('file_exte')) {
 }
 
 if (!function_exists('storage_url')) {
-    function storage_url(string $path):string
+    function storage_url(string $path = ''): string
     {
-        return url('storage/' . $path);
+        return !empty($path) ? url('storage/' . $path) : '';
     }
 }

@@ -105,11 +105,28 @@ if (!function_exists('redirect')) {
     {
         $check_path = parse_url($path);
         if (isset($check_path['scheme']) and isset($check_path['host'])) {
-            header("Location: ". $path );
-        }else{
-            header("Location: ". url($path));
+            header("Location: " . $path);
+        } else {
+            header("Location: " . url($path));
         }
         exit;
+    }
+}
+if (!function_exists('redirect_if')) {
+    /**
+     * redirect_ifs the user to a specified path.
+     *
+     * Generates a full URL from the given path using the `url()` helper,
+     * sends an HTTP Location header to redirect_if the client, and terminates script execution.
+     *
+     * @param string $path The path to redirect_if to.
+     * @return void
+     */
+    function redirect_if(bool $statment, string $path)
+    {
+        if ($statment) {
+            redirect($path);
+        }
     }
 }
 
