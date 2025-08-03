@@ -22,7 +22,7 @@ if (!empty($data['icon']['tmp_name'])) {
     unset($data['icon']);
 }
 
-var_dump($data);
+// var_dump($data);
 db_update('categories', $data, request('id'));
 // session_flash('old');
 redirect(aurl('categories'));

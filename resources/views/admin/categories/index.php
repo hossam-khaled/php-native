@@ -31,8 +31,7 @@ $categories = db_paginate('categories', '', 10);
                     $icon_url = is_null($category['icon']) ? '' : $category['icon']; ?>
                     <tr>
                         <td>{{$category['id']}}</td>
-                        <td><img src="{{ storage_url( $icon_url ) }}" alt="{{$category['name']}}"
-                                srcset="{{ storage_url( $icon_url ) }}" width="50px" height="25px"></td>
+                        <td>{{ image( storage_url( $icon_url ) )}}</td>
                         <td>{{$category['name']}}</td>
                         <td>{{$category['description']}}</td>
                         <td>
@@ -40,8 +39,9 @@ $categories = db_paginate('categories', '', 10);
                                     class="fa-regular fa-eye"></i></a>
                             <a href="{{aurl('categories/edit?id='.$category['id'])}}" class="btn btn-sm btn-primary"><i
                                     class="fa-regular fa-pen-to-square"></i></a>
-                            <a href="{{aurl('categories/delete?id='.$category['id'])}}" class="btn btn-sm btn-danger"><i
-                                    class="fa-regular fa-trash-can"></i></a>
+                            <!-- <a href="{{aurl('categories/delete?id='.$category['id'])}}" class="btn btn-sm btn-danger"><i
+                                    class="fa-regular fa-trash-can"></i></a> -->
+                                    {{ delete_record( aurl( 'categories/delete?id='.$category['id'] ) ) }}
                         </td>
                     </tr>
                 <?php endwhile; ?>

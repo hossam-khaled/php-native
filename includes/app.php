@@ -20,7 +20,7 @@ ob_start();
  *
  * @see /helpers directory for the implementation of each helper.
  */
-$helpers = array("bcrypt","request","routing","helper","AES","db", "session","auth", "mail","translation","view","storage","validation") ;
+$helpers = array("bcrypt","request","routing","helper","AES","db", "session","auth", "mail","translation","view","storage","validation","media") ;
 foreach ($helpers as $helper) {
   require __DIR__ ."/helpers/". $helper .".php";
 }

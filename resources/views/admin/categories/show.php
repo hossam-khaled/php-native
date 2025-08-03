@@ -24,22 +24,9 @@ $icon_url = is_null($category['icon']) ? '' : $category['icon'];
     </div>
     <div class="mb-3">
         <label for="icon" class="form-label">{{lang('cat.icon')}}</label>
-        <img src="{{ storage_url( $icon_url ) }}" alt="{{$category['name']}}" srcset="{{ storage_url( $icon_url ) }}"
-            data-bs-toggle="modal" data-bs-target="#showImage" width="150px" height="100px">
 
+        {{ image( storage_url( $icon_url ) )}}
 
-        <!-- Modal -->
-        <div class="modal fade" id="showImage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <img src="{{ storage_url( $icon_url ) }}" alt="{{$category['name']}}"
-                            srcset="{{ storage_url( $icon_url ) }}" data-bs-toggle="modal" data-bs-target="#showImage"
-                            width="100%" height="80%">
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
     <div class="mb-3">
