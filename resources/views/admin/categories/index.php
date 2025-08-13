@@ -1,6 +1,6 @@
 <?php
 view('admin.layouts.header', ['title' => lang('admin.categories')]);
-$categories = db_paginate('categories', '', 10);
+$categories = db_paginate('categories', '', 1);
 // var_dump(mysqli_fetch_assoc($categories['query']));
 // die;
 ?>
@@ -41,14 +41,14 @@ $categories = db_paginate('categories', '', 10);
                                     class="fa-regular fa-pen-to-square"></i></a>
                             <!-- <a href="{{aurl('categories/delete?id='.$category['id'])}}" class="btn btn-sm btn-danger"><i
                                     class="fa-regular fa-trash-can"></i></a> -->
-                                    {{ delete_record( aurl( 'categories/delete?id='.$category['id'] ) ) }}
+                            {{ delete_record( aurl( 'categories/delete?id='.$category['id'] ) ) }}
                         </td>
                     </tr>
                 <?php endwhile; ?>
-
-
             </tbody>
         </table>
     </div>
+
+    {{ $categories['render'] }}
 </main>
 <?php view('admin.layouts.footer'); ?>
