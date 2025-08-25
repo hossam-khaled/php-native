@@ -24,5 +24,5 @@ return [
     'address' => 'العنوان',
     'password' => 'كلمة المرور',
     'remember_me' => 'تذكرني',
-    
+ 
 ];

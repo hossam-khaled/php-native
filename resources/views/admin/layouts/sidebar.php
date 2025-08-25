@@ -27,11 +27,11 @@
                             </a>
                         </li>
                         <li class="nav-item"> <a class="nav-link d-flex align-items-center gap-2"
-                                href="{{aurl('posts')}}">
+                                href="{{aurl('news')}}">
                                 <svg class="bi" aria-hidden="true">
                                     <use xlink:href="#file-earmark-text"></use>
                                 </svg>
-                                {{lang('admin.posts')}}
+                                {{lang('admin.news')}}
                             </a> </li>
                         <li class="nav-item"> <a class="nav-link d-flex align-items-center gap-2"
                                 href="{{aurl('user')}}"> <svg class="bi" aria-hidden="true">

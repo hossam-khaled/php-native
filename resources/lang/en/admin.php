@@ -35,4 +35,5 @@ return [
     'show' => 'Show',
     'save' => 'Save',
     'cancel' => 'Cancel',
+    'news' => 'News',
 ];
