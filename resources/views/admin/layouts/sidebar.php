@@ -20,63 +20,31 @@
                         </li>
                         <li class="nav-item"> <a class="nav-link d-flex align-items-center gap-2"
                                 href="{{ aurl('categories')}}">
-                                <svg class="bi" aria-hidden="true">
+                                <!-- <svg class="bi" aria-hidden="true">
                                     <use xlink:href="#file-earmark"></use>
-                                </svg>
+                                </svg> -->
+                                <i class="fa-solid fa-list"></i>
                                 {{ lang('admin.categories')}}
                             </a>
                         </li>
                         <li class="nav-item"> <a class="nav-link d-flex align-items-center gap-2"
                                 href="{{aurl('news')}}">
-                                <svg class="bi" aria-hidden="true">
-                                    <use xlink:href="#file-earmark-text"></use>
-                                </svg>
+                                <i class="fa-solid fa-newspaper"></i>
                                 {{lang('admin.news')}}
                             </a> </li>
                         <li class="nav-item"> <a class="nav-link d-flex align-items-center gap-2"
-                                href="{{aurl('user')}}"> <svg class="bi" aria-hidden="true">
+                                href="{{aurl('user')}}">
+                                <svg class="bi" aria-hidden="true">
                                     <use xlink:href="#people"></use>
                                 </svg>
                                 {{lang('admin.users')}}
                             </a> </li>
                     </ul>
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
-                        <span>Saved reports</span> <a class="link-secondary" href="#" aria-label="Add a new report">
-                            <svg class="bi" aria-hidden="true">
-                                <use xlink:href="#plus-circle"></use>
-                            </svg> </a>
-                    </h6>
+
+
                     <ul class="nav flex-column mb-auto">
                         <li class="nav-item"> <a class="nav-link d-flex align-items-center gap-2" href="#">
                                 <svg class="bi" aria-hidden="true">
-                                    <use xlink:href="#file-earmark-text"></use>
-                                </svg>
-                                Current month
-                            </a> </li>
-                        <li class="nav-item"> <a class="nav-link d-flex align-items-center gap-2" href="#"> <svg
-                                    class="bi" aria-hidden="true">
-                                    <use xlink:href="#file-earmark-text"></use>
-                                </svg>
-                                Last quarter
-                            </a> </li>
-                        <li class="nav-item"> <a class="nav-link d-flex align-items-center gap-2" href="#"> <svg
-                                    class="bi" aria-hidden="true">
-                                    <use xlink:href="#file-earmark-text"></use>
-                                </svg>
-                                Social engagement
-                            </a> </li>
-                        <li class="nav-item"> <a class="nav-link d-flex align-items-center gap-2" href="#"> <svg
-                                    class="bi" aria-hidden="true">
-                                    <use xlink:href="#file-earmark-text"></use>
-                                </svg>
-                                Year-end sale
-                            </a> </li>
-                    </ul>
-                    <hr class="my-3">
-                    <ul class="nav flex-column mb-auto">
-                        <li class="nav-item"> <a class="nav-link d-flex align-items-center gap-2" href="#"> <svg
-                                    class="bi" aria-hidden="true">
                                     <use xlink:href="#gear-wide-connected"></use>
                                 </svg>
                                 Settings

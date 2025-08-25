@@ -2,13 +2,18 @@
 view('admin.layouts.header', ['title' => lang('admin.create')]);
 // var_dump(mysqli_fetch_assoc($categories['query']));
 // die;
+$categories = db_paginate('categories', '', 10);
+$users = db_paginate('users', '', 10);
+// var_dump(mysqli_fetch_assoc($users['query']));
 ?>
 @php
-// var_dump(any_errors());
 //echo get_error();'
-$name = get_error('name');
-$icon = get_error('icon');
+$title = get_error('title');
+$image = get_error('image');
 $description = get_error('description');
+$content = get_error('content');
+$category_id = get_error('category_id');
+$user_id = get_error('user_id');
 @endphp
 <?php
 // var_dump(parse_url(url(ADMIN)));
@@ -35,7 +40,7 @@ $description = get_error('description');
             <a href="{{aurl('news')}}" class="btn btn-info">{{lang('admin.news')}}</a>
         </h1>
     </div>
-    <form action="{{aurl('news/create')}}" method="post"  enctype="multipart/form-data">
+    <form action="{{aurl('news/create')}}" method="post" enctype="multipart/form-data">
         <input type="hidden" name="_method" value="post">
         <div class="mb-3">
             <label for="title" class="form-label">{{lang('news.title')}}</label>
@@ -54,8 +59,34 @@ $description = get_error('description');
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">{{lang('news.content')}}</label>
-            <textarea class="form-control <?= !empty($content) ? 'is-invalid' : '' ?>" id="content"
-                name="content" rows="3"><?= old('content') ?></textarea>
+            <textarea class="form-control <?= !empty($content) ? 'is-invalid' : '' ?>" id="content" name="content"
+                rows="3"><?= old('content') ?></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="category_id" class="form-label">{{lang('news.category')}}</label>
+            <?php //var_dump($categories['query']); die; 
+            ?>
+            <select class="form-select" id="category_id" name="category_id" required>
+                <?php while ($category = mysqli_fetch_assoc($categories['query'])): ?>
+                <option value="{{$category['id']}}" <?= old('category_id') == $category['id'] ? 'selected' : '' ?>>
+                    {{$category['name']}}
+                </option>
+                <?php endwhile; ?>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="user_id" class="form-label">{{lang('news.author')}}</label>
+            <select class="form-select" id="user_id" name="user_id" required>
+                <?php
+                // var_dump(mysqli_fetch_assoc($users['query']));
+                // die;
+                ?>
+                <?php while ($user = mysqli_fetch_assoc($users['query'])): ?>
+                <option value="{{$user['id']}}" <?= old('user_id') == $user['id'] ? 'selected' : '' ?>>
+                    {{$user['email']}}
+                </option>
+                <?php endwhile; ?>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">{{lang('news.create')}}</button>
     </form>

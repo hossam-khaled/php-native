@@ -6,10 +6,11 @@ return [
     'image' => 'image',
     'description' => 'description',
     'content' => 'content',
-    'create' => '',
-    'edit' => '',
-    'show' => '',
-    'delete' => '',
-        'user_id' => 'الكاتب',
-    'category_id' => 'القسم',
+    'create' => 'create',
+    'edit' => 'edit',
+    'show' => 'show',
+    'delete' => 'delete',
+    'user_id' => 'author',
+    'category_id' => 'category',
+
 ];
