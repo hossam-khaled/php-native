@@ -1,6 +1,6 @@
 <?php
 view('admin.layouts.header', ['title' => lang('admin.news')]);
-$news_list = db_paginate('news', '', 1);
+$news_list = db_paginate('news', '', 10);
 // var_dump(mysqli_fetch_assoc($news['query']));
 // die;
 ?>
@@ -26,7 +26,6 @@ $news_list = db_paginate('news', '', 1);
                     <th scope="col">{{lang('news.category_id')}}</th>
                     <th scope="col">{{lang('news.description')}}</th>
                     <th scope="col">{{lang('news.image')}}</th>
-                    <th scope="col">{{lang('news.content')}}</th>
                     <th scope="col">{{lang('admin.created_at')}}</th>
                     <th scope="col">{{lang('admin.updated_at')}}</th>
                     <th scope="col">{{lang('admin.action')}}</th>
@@ -43,7 +42,6 @@ $news_list = db_paginate('news', '', 1);
                     <td>{{$news['category_id']}}</td>
                     <td>{{$news['description']}}</td>
                     <td>{{ image( storage_url( $image_url ) )}}</td>
-                    <td>{{$news['content']}}</td>
                     <td>{{$news['created_at']}}</td>
                     <td>{{$news['updated_at']}}</td>
                     <td>

@@ -6,7 +6,7 @@ return [
     'image' => 'image',
     'description' => 'description',
     'content' => 'content',
-    'create' => 'create',
+    'create' => 'Add New News',
     'edit' => 'edit',
     'show' => 'show',
     'delete' => 'delete',

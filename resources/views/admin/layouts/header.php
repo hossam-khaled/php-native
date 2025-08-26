@@ -28,6 +28,18 @@ if (session_has('locale')) {
     <link href="{{ url('assets/admin') }}/css/header.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/46.0.2/ckeditor5.css" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/46.0.2/ckeditor5.umd.js"></script>
+    <style>
+        .ck.ck-editor {
+            position: relative;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+        .ck.ck-content{
+            height: 370px;
+        }
+    </style>
 </head>
 
 

@@ -36,4 +36,5 @@ return [
     'save' => 'Save',
     'cancel' => 'Cancel',
     'news' => 'News',
+    'choose' => 'Choose',
 ];
