@@ -1,14 +1,14 @@
 <?php
-view('admin.layouts.header', ['title' => lang('admin.categories') . '-' . lang('admin.show')]);
-// var_dump(mysqli_fetch_assoc($categories['query']));
+view('admin.layouts.header', ['title' => lang('admin.news') . '-' . lang('admin.show')]);
+// var_dump(mysqli_fetch_assoc($news['query']));
 // die;
-$category = db_find('categories', request('id'));
-// if (empty($category)) {
-//     redirect(aurl('categories'));
+$news = db_find('news', request('id'));
+// if (empty($news)) {
+//     redirect(aurl('news'));
 // }
-redirect_if(empty($category), aurl('categories'));
-// var_dump($category);
-$icon_url = is_null($category['icon']) ? '' : $category['icon'];
+redirect_if(empty($news), aurl('news'));
+// var_dump($news);
+$image_url = is_null($news['image']) ? '' : $news['image'];
 ?>
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
@@ -19,19 +19,25 @@ $icon_url = is_null($category['icon']) ? '' : $category['icon'];
         </h1>
     </div>
     <div class="mb-3">
-        <label for="name" class="form-label">{{lang('cat.name')}}</label>
-        {{ $category['name']}}
+        <label for="name" class="form-label">{{lang('news.title')}}</label>
+        {{ $news['title']}}
+    </div>
+        <div class="mb-3">
+        <label for="name" class="form-label">{{lang('news.category_id')}}</label>
+        {{ $news['category_id']}}
     </div>
     <div class="mb-3">
-        <label for="icon" class="form-label">{{lang('cat.icon')}}</label>
-
-        {{ image( storage_url( $icon_url ) )}}
-
-
+        <label for="icon" class="form-label">{{lang('news.image')}}</label>
+        {{ image( storage_url( $image_url ) )}}
     </div>
     <div class="mb-3">
-        <label for="description" class="form-label">{{lang('cat.description')}}</label>
-        {{ $category['description']}}
+        <label for="description" class="form-label">{{lang('news.description')}}</label>
+        {{ $news['description']}}
+    </div>
+
+        <div class="mb-3">
+        <label for="content" class="form-label">{{lang('news.content')}}</label>
+        {{ $news['content']}}
     </div>
 </main>
 

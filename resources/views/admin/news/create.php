@@ -1,10 +1,7 @@
 <?php
 view('admin.layouts.header', ['title' => lang('admin.create')]);
-// var_dump(mysqli_fetch_assoc($categories['query']));
-// die;
+
 $categories = db_get('categories', '');
-// $users = db_get('users', '');
-// var_dump(mysqli_fetch_assoc($users['query']));
 ?>
 @php
 //echo get_error();'
@@ -15,10 +12,7 @@ $content = get_error('content');
 $category_id = get_error('category_id');
 $user_id = get_error('user_id');
 @endphp
-<?php
-// var_dump(parse_url(url(ADMIN)));
-// die;
-?>
+
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     @if( any_errors() )
     <div class="alert alert-danger" role="alert">
@@ -76,18 +70,6 @@ $user_id = get_error('user_id');
                 <textarea class="form-control <?= !empty($content) ? 'is-invalid' : '' ?>" id="content" name="content"
                     rows="5"><?= old('content') ?></textarea>
             </div>
-
-            <!-- <div class="mb-3">
-                <label for="user_id" class="form-label">{{lang('news.author')}}</label>
-                <select class="form-select <?= !empty($user_id) ? 'is-invalid' : '' ?>" id="user_id" name="user_id" required>
-                    <option disabled selected value="">{{ lang('admin.choose') }}</option>
-                    <?php while ($user = mysqli_fetch_assoc($users['query'])): ?>
-                        <option value="{{$user['id']}}" <?= old('user_id') == $user['id'] ? 'selected' : '' ?>>
-                            {{$user['email']}}
-                        </option>
-                    <?php endwhile; ?>
-                </select>
-            </div> -->
             <button type="submit" class="btn btn-primary">{{lang('news.create')}}</button>
 
         </div>
@@ -101,17 +83,6 @@ $user_id = get_error('user_id');
 <script type="module">
     // const LICENSE_KEY = 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3ODc3ODg3OTksImp0aSI6IjcxMjAyMzZiLWExYjctNGM0OS05MDYyLTJkZDZjMjZjZTgzMiIsImxpY2Vuc2VkSG9zdHMiOlsiMTI3LjAuMC4xIiwibG9jYWxob3N0IiwiMTkyLjE2OC4qLioiLCIxMC4qLiouKiIsIjE3Mi4qLiouKiIsIioudGVzdCIsIioubG9jYWxob3N0IiwiKi5sb2NhbCJdLCJ1c2FnZUVuZHBvaW50IjoiaHR0cHM6Ly9wcm94eS1ldmVudC5ja2VkaXRvci5jb20iLCJkaXN0cmlidXRpb25DaGFubmVsIjpbImNsb3VkIiwiZHJ1cGFsIl0sImxpY2Vuc2VUeXBlIjoiZGV2ZWxvcG1lbnQiLCJmZWF0dXJlcyI6WyJEUlVQIiwiRTJQIiwiRTJXIl0sInZjIjoiZmM5NDQyYmUifQ.L6eijLFQH8XRxZ3tfEroRV6jK4cuCZGmgIwFrCbSVGLqJm4NYS7FJNZ0dEMSWcFHwKaUM2_5N_9dvAImsxr6vQ';
     const LICENSE_KEY = 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NTc0NjIzOTksImp0aSI6IjA1ZmI5Y2MyLTY4ODQtNDRmNy1iMTE2LTBkNmE2NmIwNGNlNCIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjBhOTgzNjViIn0.dtwzSrYwN6oqlMs-pOfcZUpBkLGlnB6BTvgTHL5KOwC8nEXEYevBOV77SUxlKQrztcYmTZLVQqJaqW2x325YOQ';
-
-    if (LICENSE_KEY === 'GPL') {
-        alert('Premium features are disabled, because they require a commercial license key. Check the index.js file for more information.');
-    }
-
-    /**
-     * CKBox plugin requires a valid token URL in order to use the CKBox application.
-     *
-     * After registering to CKBox, the fastest way to try out CKBox is to use the development token endpoint:
-     * https://ckeditor.com/docs/ckbox/latest/guides/configuration/authentication.html#token-endpoint
-     */
     const CKBOX_TOKEN_URL = '';
 
     const {
