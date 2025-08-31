@@ -1,8 +1,23 @@
 <?php
 view('admin.layouts.header', ['title' => lang('admin.news') . '-' . lang('admin.show')]);
 // var_dump(mysqli_fetch_assoc($news['query']));
-// die;
-$news = db_find('news', request('id'));
+// request('id')
+$news = db_search(
+    'news',
+    "
+    JOIN categories ON news.category_id = categories.id 
+    JOIN users ON news.user_id = users.id
+    WHERE news.id=" . request('id'),
+    '
+    news.title,
+    news.description, 
+    news.content, 
+    news.image, 
+    news.category_id, 
+    news.user_id, 
+    categories.name as category_name, 
+    users.name as user_name'
+);
 // if (empty($news)) {
 //     redirect(aurl('news'));
 // }
@@ -22,9 +37,13 @@ $image_url = is_null($news['image']) ? '' : $news['image'];
         <label for="name" class="form-label">{{lang('news.title')}}</label>
         {{ $news['title']}}
     </div>
-        <div class="mb-3">
-        <label for="name" class="form-label">{{lang('news.category_id')}}</label>
-        {{ $news['category_id']}}
+    <div class="mb-3">
+        <label for="category_id" class="form-label">{{lang('news.category_id')}}</label>
+        {{ $news['category_name']}}
+    </div>
+    <div class="mb-3">
+        <label for="user_id" class="form-label">{{lang('news.user_id')}}</label>
+        {{ $news['user_name']}}
     </div>
     <div class="mb-3">
         <label for="icon" class="form-label">{{lang('news.image')}}</label>
@@ -35,7 +54,7 @@ $image_url = is_null($news['image']) ? '' : $news['image'];
         {{ $news['description']}}
     </div>
 
-        <div class="mb-3">
+    <div class="mb-3">
         <label for="content" class="form-label">{{lang('news.content')}}</label>
         {{ $news['content']}}
     </div>

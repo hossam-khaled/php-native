@@ -1,6 +1,35 @@
 <?php
 view('admin.layouts.header', ['title' => lang('admin.news')]);
-$news_list = db_paginate('news', '', 10);
+
+
+/*
+    JOIN categories ON news.category_id = categories.id 
+    JOIN users ON news.user_id = users.id
+    WHERE news.id=" . request('id'),
+    '
+    news.title,
+    news.description, 
+    news.content, 
+    news.image, 
+    news.category_id, 
+    news.user_id, 
+    categories.name as category_name, 
+    users.name as user_name'
+*/
+$news_list = db_paginate('news', 'JOIN categories ON news.category_id = categories.id 
+    JOIN users ON news.user_id = users.id
+    ', 10, 'asc',  '
+    news.id,
+    news.title,
+    news.description, 
+    news.content, 
+    news.image, 
+    news.category_id, 
+    news.user_id, 
+    news.created_at, 
+    news.updated_at,
+    categories.name as category_name, 
+    users.name as user_name');
 // var_dump(mysqli_fetch_assoc($news['query']));
 // die;
 ?>
@@ -35,25 +64,27 @@ $news_list = db_paginate('news', '', 10);
                 <?php while ($news = mysqli_fetch_assoc($news_list['query'])):
                     $image_url = is_null($news['image']) ? '' : $news['image'];
                 ?>
-                <tr>
-                    <td>{{$news['id']}}</td>
-                    <td>{{$news['title']}}</td>
-                    <td>{{$news['user_id']}}</td>
-                    <td>{{$news['category_id']}}</td>
-                    <td>{{$news['description']}}</td>
-                    <td>{{ image( storage_url( $image_url ) )}}</td>
-                    <td>{{$news['created_at']}}</td>
-                    <td>{{$news['updated_at']}}</td>
-                    <td>
-                        <a href="{{aurl('news/show?id='.$news['id'])}}" class="btn btn-sm btn-info"><i
-                                class="fa-regular fa-eye"></i></a>
-                        <a href="{{aurl('news/edit?id='.$news['id'])}}" class="btn btn-sm btn-primary"><i
-                                class="fa-regular fa-pen-to-square"></i></a>
-                        <!-- <a href="{{aurl('news/delete?id='.$news['id'])}}" class="btn btn-sm btn-danger"><i
+                    <tr>
+                        <td>{{$news['id']}}</td>
+                        <td>{{$news['title']}}</td>
+                        <td><a href="{{aurl('users/show?id='.$news['user_id'])}}">{{$news['user_name']}}</a></td>
+                        <td>
+                            <a href="{{aurl('categories/show?id='.$news['category_id'])}}">{{$news['category_name']}}</a>
+                        </td>
+                        <td>{{$news['description']}}</td>
+                        <td>{{ image( storage_url( $image_url ) )}}</td>
+                        <td>{{$news['created_at']}}</td>
+                        <td>{{$news['updated_at']}}</td>
+                        <td>
+                            <a href="{{aurl('news/show?id='.$news['id'])}}" class="btn btn-sm btn-info"><i
+                                    class="fa-regular fa-eye"></i></a>
+                            <a href="{{aurl('news/edit?id='.$news['id'])}}" class="btn btn-sm btn-primary"><i
+                                    class="fa-regular fa-pen-to-square"></i></a>
+                            <!-- <a href="{{aurl('news/delete?id='.$news['id'])}}" class="btn btn-sm btn-danger"><i
                                     class="fa-regular fa-trash-can"></i></a> -->
-                        {{ delete_record( aurl( 'news/delete?id='.$news['id'] ) ) }}
-                    </td>
-                </tr>
+                            {{ delete_record( aurl( 'news/delete?id='.$news['id'] ) ) }}
+                        </td>
+                    </tr>
                 <?php endwhile; ?>
             </tbody>
         </table>
