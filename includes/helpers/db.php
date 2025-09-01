@@ -115,6 +115,7 @@ if (!function_exists("db_search")) {
     {
 
         $sql = "SELECT $select FROM $table $query_str";
+        
         // echo $sql;
         $query = mysqli_query($GLOBALS["connect"], $sql);
         $data = mysqli_fetch_assoc($query);

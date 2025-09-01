@@ -2,9 +2,9 @@
 $data = validation(
     [
         'name' => 'required|string',
-        'email' => 'required|email',
+        'email' => 'required|email|unique:users',
         'password' => 'required|string',
-        'mobile' => 'required|numeric',
+        'mobile' => 'required|numeric|unique:users',
         'user_type' => 'required|string',
     ],
     [
@@ -17,7 +17,7 @@ $data = validation(
 );
 
 
-
+$data['password'] = bcrypt($data['password']);
 //var_dump($data);
 db_create('users', $data);
 session_flash('old');

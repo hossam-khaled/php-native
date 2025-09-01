@@ -52,6 +52,11 @@ $user_type = get_error('user_type');
                 value="<?= $user['mobile'] ?>" id="mobile" name="mobile">
         </div>
         <div class="mb-3">
+            <label for="email" class="form-label">{{lang('user.email')}}</label>
+            <input type="email" class="form-control <?= !empty($email) ? 'is-invalid' : '' ?>"
+                value="<?= $user['email'] ?>" id="email" name="email">
+        </div>
+        <div class="mb-3">
             <label for="password" class="form-label">{{lang('user.password')}}</label>
             <input type="password" class="form-control <?= !empty($password) ? 'is-invalid' : '' ?>" value=""
                 id="password" name="password">
