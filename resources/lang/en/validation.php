@@ -19,5 +19,7 @@ return [
     'url' => ':attribute: This field must be a valid URL.',
     'ip' => ':attribute: This field must be a valid IP address.',
     'mac' => ':attribute: This field must be a valid MAC address.',
+    'in' => ':attribute: The selected value is invalid.',
+    'not_in' => ':attribute: The selected value is invalid.',
     // Add more validation messages as needed
 ];

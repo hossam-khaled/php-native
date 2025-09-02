@@ -25,7 +25,6 @@ redirect_if(empty($news), aurl('news'));
 // var_dump($news);
 $image_url = is_null($news['image']) ? '' : $news['image'];
 ?>
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
     <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -58,7 +57,6 @@ $image_url = is_null($news['image']) ? '' : $news['image'];
         <label for="content" class="form-label">{{lang('news.content')}}</label>
         {{ $news['content']}}
     </div>
-</main>
 
 <?php
 view('admin.layouts.footer');

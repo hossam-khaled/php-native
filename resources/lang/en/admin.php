@@ -37,4 +37,8 @@ return [
     'cancel' => 'Cancel',
     'news' => 'News',
     'choose' => 'Choose',
+    'success' => 'Success',
+    'added' => 'Success Create',
+    'updated'=> 'update Success',
+    'deleted' => 'delete Success'
 ];

@@ -70,7 +70,7 @@ if(!function_exists("session_forget")){
            unset($_SESSION[$key]);
         //    echo 'Done ..!';
        }else{
-            echo "This ". $key .' not set';
+            echo "<!-- This ". $key .' not set -->';
        }
     }
 }

@@ -8,33 +8,6 @@ redirect_if(empty($news), aurl('categories'));
 $categories = db_get('categories', '');
 
 ?>
-@php
-//echo get_error();'
-$title = get_error('title');
-$image = get_error('image');
-$description = get_error('description');
-$content = get_error('content');
-$category_id = get_error('category_id');
-$user_id = get_error('user_id');
-@endphp
-<?php
-// var_dump(parse_url(url(ADMIN)));
-// die;
-?>
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    @if( any_errors() )
-    <div class="alert alert-danger" role="alert">
-        <ol>
-            @foreach( all_errors() as $error)
-            <li> @php echo $error @endphp </li>
-            @endforeach
-        </ol>
-    </div>
-    @php
-    end_errors();
-    @endphp
-    @endif
-
     <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2 d-flex justify-content-between w-100">
@@ -47,19 +20,19 @@ $user_id = get_error('user_id');
             <input type="hidden" name="_method" value="post">
             <div class="mb-3 col-md-12">
                 <label for="title" class="form-label">{{lang('news.title')}}</label>
-                <input type="text" class="form-control <?= !empty($title) ? 'is-invalid' : '' ?>"
+                <input type="text" class="form-control <?= !empty( get_error('title') ) ? 'is-invalid' : '' ?>"
                     value="<?= $news['title'] ?>" id="title" name="title" required>
             </div>
             <div class="mb-3 col-md-6">
                 <label for="image" class="form-label">{{lang('news.image')}}</label>
-                <input type="file" class="form-control <?= !empty($image) ? 'is-invalid' : '' ?>"
+                <input type="file" class="form-control <?= !empty( get_error('image')) ? 'is-invalid' : '' ?>"
                     value="<?= $news['image'] ?>" id="image" name="image">
             </div>
             <div class="mb-3  col-md-6">
                 <label for="category_id" class="form-label">{{lang('news.category_id')}}</label>
                 <?php //var_dump($categories['query']); die; 
                 ?>
-                <select class="form-select <?= !empty($category_id) ? 'is-invalid' : '' ?>" id="category_id" name="category_id" required>
+                <select class="form-select <?= !empty(get_error('category_id')) ? 'is-invalid' : '' ?>" id="category_id" name="category_id" required>
                     <option disabled selected value="">{{ lang('admin.choose') }}</option>
                     <?php while ($category = mysqli_fetch_assoc($categories['query'])): ?>
                         <option  value="{{$category['id']}}" <?= $news['category_id'] == $category['id'] ? 'selected' : '' ?>>
@@ -70,19 +43,18 @@ $user_id = get_error('user_id');
             </div>
             <div class="mb-3  col-md-12">
                 <label for="description" class="form-label">{{lang('news.description')}}</label>
-                <textarea class="form-control <?= !empty($description) ? 'is-invalid' : '' ?>" id="description"
+                <textarea class="form-control <?= !empty(get_error('description')) ? 'is-invalid' : '' ?>" id="description"
                     name="description" rows="3"><?= $news['description'] ?></textarea>
             </div>
             <div class="mb-3 c5l-md-12">
                 <label for="content" class="form-label">{{lang('news.content')}}</label>
-                <textarea class="form-control <?= !empty($content) ? 'is-invalid' : '' ?>" id="content" name="content"
+                <textarea class="form-control <?= !empty(get_error('content')) ? 'is-invalid' : '' ?>" id="content" name="content"
                     rows="5"><?=  $news['content'] ?></textarea>
             </div>
             <button type="submit" class="btn btn-primary">{{lang('news.create')}}</button>
 
         </div>
     </form>
-</main>
 <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5-premium-features/46.0.2/ckeditor5-premium-features.css" />
 <script src="https://cdn.ckeditor.com/ckeditor5-premium-features/46.0.2/ckeditor5-premium-features.umd.js"></script>
 

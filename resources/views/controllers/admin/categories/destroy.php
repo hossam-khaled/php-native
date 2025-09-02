@@ -8,5 +8,6 @@ if(!empty($category['icon'])) {
 
 
 db_delete('categories', request('id') );
+session('success', lang('admin.deleted'));
 
 redirect(aurl('categories'));

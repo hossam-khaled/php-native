@@ -29,6 +29,7 @@ if (session_has('locale')) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/46.0.2/ckeditor5.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <script src="https://cdn.ckeditor.com/ckeditor5/46.0.2/ckeditor5.umd.js"></script>
     <style>
         .ck.ck-editor {
@@ -197,3 +198,16 @@ if (session_has('locale')) {
     </svg>
     <?php view('admin.layouts.navbar'); ?>
     <?php view('admin.layouts.sidebar'); ?>
+
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        @if( any_errors() )
+        <div class="alert alert-danger" role="alert">
+            <ol>
+                @foreach( all_errors() as $error)
+                <li> @php echo $error @endphp </li>
+                @endforeach
+            </ol>
+        </div>
+
+        @endif

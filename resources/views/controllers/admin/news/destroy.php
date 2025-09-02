@@ -8,5 +8,6 @@ if(!empty($news['images'])) {
 
 
 db_delete('news', request('id') );
+session('success', lang('admin.deleted'));
 
 redirect(aurl('news'));

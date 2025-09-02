@@ -18,7 +18,6 @@ $description = get_error('description');
 // var_dump(parse_url(url(ADMIN)));
 // die;
 ?>
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     @if( any_errors() )
     <div class="alert alert-danger" role="alert">
         <ol>
@@ -65,7 +64,6 @@ $description = get_error('description');
         </div>
         <button type="submit" class="btn btn-primary">{{lang('admin.save')}}</button>
     </form>
-</main>
 
 <?php
 view('admin.layouts.footer');

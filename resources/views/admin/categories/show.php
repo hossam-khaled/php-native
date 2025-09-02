@@ -10,7 +10,6 @@ redirect_if(empty($category), aurl('categories'));
 // var_dump($category);
 $icon_url = is_null($category['icon']) ? '' : $category['icon'];
 ?>
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
     <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -33,7 +32,6 @@ $icon_url = is_null($category['icon']) ? '' : $category['icon'];
         <label for="description" class="form-label">{{lang('cat.description')}}</label>
         {{ $category['description']}}
     </div>
-</main>
 
 <?php
 view('admin.layouts.footer');

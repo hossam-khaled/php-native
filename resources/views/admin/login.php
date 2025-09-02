@@ -165,8 +165,7 @@ if (session_has('locale')) {
         <a href="{{url( ADMIN .'/lang?lang=ar')}}" class="nav-link">{{ lang('main.arabic') }}</a>
 
         @endif
-    </main>
-    <script src="{{ url('assets/admin') }}/assets/dist/js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
+        <script src="{{ url('assets/admin') }}/assets/dist/js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
 </body>
 
 </html>

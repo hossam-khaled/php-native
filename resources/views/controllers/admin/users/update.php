@@ -5,7 +5,7 @@ $data = validation(
         'email' => 'required|email|unique:users,email,'. request('id'),
         'password' => '',
         'mobile' => 'required|numeric|unique:users,mobile,'. request('id'),
-        'user_type' => 'required|string',
+        'user_type' => 'required|string|in:admin,user',
     ],
     [
         'name' => lang('user.name'),
@@ -25,5 +25,7 @@ if (!empty($data['password'])) {
 
 // var_dump($data);
 db_update('users', $data, request('id'));
-// session_flash('old');
+session_forget('old');
+session('success', lang('admin.updated'));
+
 redirect(aurl('users'));

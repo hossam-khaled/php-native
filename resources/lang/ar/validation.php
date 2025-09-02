@@ -18,5 +18,7 @@ return [
     'image' => ':attribute: يجب أن يكون هذا الحقل صورة.',
     'url' => ':attribute: This field must be a valid URL.',
     'ip' => ':attribute: This field must be a valid IP address.', 
+    'in' => ':attribute: القيمة المحددة غير صالحة.',
+    'not_in' => ':attribute: القيمة المحددة غير صالحة.',
     // Add more validation messages as needed
 ];

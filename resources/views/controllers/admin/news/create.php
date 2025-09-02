@@ -26,4 +26,6 @@ $data['updated_at'] = date('Y-m-d h:i:s');
 //var_dump($data);
 db_create('news', $data);
 session_flash('old');
+session('success', lang('admin.added'));
+
 redirect(aurl('news'));

@@ -33,6 +33,7 @@ if (!empty($data['image']['tmp_name'])) {
 
 //var_dump($data);
 db_update('news', $data, request('id'));
-
 session_flash('old');
+session('success', lang('admin.updated'));
+
 redirect(aurl('news'));
