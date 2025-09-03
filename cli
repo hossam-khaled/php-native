@@ -1,0 +1,26 @@
+<?php
+// STDIN
+
+// if( !defined("STDIN") ){
+//     defined("STDIN", "fopen('php://stdin', 'r')");
+// }
+
+// $command = fgets(STDIN);
+
+// $output = 'get from cli : '.$command .PHP_EOL;
+
+// fwrite(STDOUT, $output);
+if (php_sapi_name() == 'cli') {
+    $str = $_SERVER['argv'];
+    if( $str[1] == 'view:clear') {
+        $path = 'storage/views';
+        $files = glob($path.'/*');
+        foreach ($files as $file) {
+            if( file_exists($file) ){
+                unlink($file);
+            }
+        }
+    
+        exit( 'Views is cleared' );
+    }
+}
