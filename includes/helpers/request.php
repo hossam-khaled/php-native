@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Retrieves a value from the $_REQUEST superglobal array.
  *
@@ -9,10 +10,11 @@
  * @return mixed|null The value of the request parameter if set, or null if not found.
  */
 if (!function_exists('request')) {
-    function request( $request = null) {
-        if( isset($_FILES[$request]) && !empty($_FILES[$request]) ){
+    function request($request = null)
+    {
+        if (isset($_FILES[$request]) && !empty($_FILES[$request])) {
             return $_FILES[$request];
         }
-        return $_REQUEST[$request] ?$_REQUEST[$request] : null;
+        return isset($_REQUEST[$request]) && !empty($_REQUEST[$request]) ? $_REQUEST[$request] : null;
     }
 }

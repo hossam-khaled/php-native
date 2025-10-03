@@ -14,7 +14,7 @@ return [
     'posts' => 'Posts',
     'comments' => 'Comments',
     'page' => 'Page',
-    'welcome' => 'Welcome to our site', 
+    'welcome' => 'Welcome to our site',
     'search' => 'Search',
     'submit' => 'Submit',
     'language' => 'Language',
@@ -25,4 +25,5 @@ return [
     'address' => 'Address',
     'password' => 'Password',
     'remember_me' => 'Remember Me',
+    'post_title' => 'Title of a longer featured blog post',
 ];

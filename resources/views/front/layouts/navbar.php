@@ -92,11 +92,11 @@
             <div class="row flex-nowrap justify-content-between align-items-center">
                 <div class="col-4 pt-1">
                     <?php if (session('locale') == 'ar') { ?>
-                    <a class="btn btn-sm btn-outline-secondary"
-                        href="<?= url('lang?lang=en') ?>"><?= lang('main.english') ?></a>
+                        <a class="btn btn-sm btn-outline-secondary"
+                            href="<?= url('lang?lang=en') ?>"><?= lang('main.english') ?></a>
                     <?php } else { ?>
-                    <a class="btn btn-sm btn-outline-secondary"
-                        href="<?= url('lang?lang=ar') ?>"><?= lang('main.arabic') ?></a>
+                        <a class="btn btn-sm btn-outline-secondary"
+                            href="<?= url('lang?lang=ar') ?>"><?= lang('main.arabic') ?></a>
                     <?php } ?>
                     <!-- <a class="link-secondary" href="#">Subscribe</a> -->
                 </div>
@@ -119,18 +119,20 @@
         </header>
         <div class="nav-scroller py-1 mb-3 border-bottom">
             <nav class="nav nav-underline justify-content-between">
-                <a class="nav-item nav-link link-body-emphasis active" href="#">World</a>
-                <a class="nav-item nav-link link-body-emphasis" href="#">U.S.</a>
-                <a class="nav-item nav-link link-body-emphasis" href="#">Technology</a>
-                <a class="nav-item nav-link link-body-emphasis" href="#">Design</a>
-                <a class="nav-item nav-link link-body-emphasis" href="#">Culture</a>
-                <a class="nav-item nav-link link-body-emphasis" href="#">Business</a>
-                <a class="nav-item nav-link link-body-emphasis" href="#">Politics</a>
-                <a class="nav-item nav-link link-body-emphasis" href="#">Opinion</a>
-                <a class="nav-item nav-link link-body-emphasis" href="#">Science</a>
-                <a class="nav-item nav-link link-body-emphasis" href="#">Health</a>
-                <a class="nav-item nav-link link-body-emphasis" href="#">Style</a>
-                <a class="nav-item nav-link link-body-emphasis" href="#">Travel</a>
+                <a class="nav-item nav-link link-body-emphasis <?php echo request('id') == null ? 'active' : '' ?>"
+                    href="{{ url('/') }}">{{ lang('main.home') }}</a>
+
+                <?php
+                $nav_categories = db_get('categories', ' order by id desc limit 10');
+                // var_dump($nav_categories);
+                // die;
+                while ($category = mysqli_fetch_assoc($nav_categories["query"])) {
+                    $active = (!empty(request("id")) && request("id") == $category["id"]) ? "active" : "";
+                    echo '<a class="nav-item nav-link link-body-emphasis ' . $active . ' " href="' . url('category?id=' . $category['id']) . '">' . $category['name'] . '</a>';
+                    // echo '<a class="nav-item nav-link link-body-emphasis active" href="">2</a>';
+                }
+                ?>
+
             </nav>
         </div>
     </div>
