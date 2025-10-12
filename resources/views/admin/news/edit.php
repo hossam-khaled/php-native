@@ -109,7 +109,7 @@ $categories = db_get('categories', '');
         TextTransformation
     } = CKEDITOR;
 
-    const { FormatPainter, SlashCommand } = CKEDITOR_PREMIUM_FEATURES;
+    const { FormatPainter } = CKEDITOR_PREMIUM_FEATURES;
 
 
     // import 'ckeditor5/ckeditor5.css';
@@ -154,9 +154,7 @@ $categories = db_get('categories', '');
                     ] : []),
 
                     // Include premium features only if the license key is not GPL.
-                    ...(LICENSE_KEY !== 'GPL' ? [
-                        SlashCommand
-                    ] : [])
+                    ...(LICENSE_KEY !== 'GPL' ? [] : [])
                 ],
                 licenseKey: LICENSE_KEY,
                 toolbar: [

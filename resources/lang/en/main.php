@@ -26,4 +26,5 @@ return [
     'password' => 'Password',
     'remember_me' => 'Remember Me',
     'post_title' => 'Title of a longer featured blog post',
+    'read_more' => 'Read More',
 ];
