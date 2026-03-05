@@ -1,5 +1,5 @@
 <?php
-$category = db_find('categories', request('id'));
+$category = db_find('categories', request('category_id'));
 view('front.layouts.header', ['title' => $category['name']]);
 redirect_if(empty($category), url('/404'));
 
@@ -26,13 +26,13 @@ $news =  db_paginate('news', "where category_id = {$category['id']}", 10);
         <div class="col-md-6">
             <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary-emphasis">World</strong>
+                    <!-- <strong class="d-inline-block mb-2 text-primary-emphasis">World</strong> -->
                     <h3 class="mb-0"><?= $news_item['title'] ?></h3>
                     <div class="mb-1 text-body-secondary"><?= $news_item['created_at'] ?></div>
                     <p class="card-text mb-auto">
                         <?= $news_item['description'] ?>
                     </p>
-                    <a href="{{ url('news?id=' . $news_item['id']) }}" class="icon-link gap-1 icon-link-hover stretched-link">
+                    <a href="{{ url('news?category_id=' . $news_item['category_id'] . '&id=' . $news_item['id']) }}" class="icon-link gap-1 icon-link-hover stretched-link">
                         {{ lang('main.read_more')}}
                         <svg class="bi" aria-hidden="true">
                             <use xlink:href="#chevron-right"></use>
@@ -41,17 +41,17 @@ $news =  db_paginate('news', "where category_id = {$category['id']}", 10);
                 </div>
                 <div class="col-auto d-none d-lg-block">
                     <?php
-                    if (!empty($news_item['image'])){
+                    if (!empty($news_item['image'])) {
                         $image = storage_url($news_item['image']);
-                    }elseif(!empty($category['icon'])){
+                    } elseif (!empty($category['icon'])) {
                         $image = storage_url($category['icon']);
-                    }else{
+                    } else {
                         $image = url('assets/images/image.png');
                     }
-                    ?>  
+                    ?>
 
-                    <img src="{{$image}}" class="bd-placeholder-img"  style="width:200px; height:250px; object-fit:cover;" />
-            
+                    <img src="{{$image}}" class="bd-placeholder-img" style="width:200px; height:250px; object-fit:cover;" />
+
                 </div>
             </div>
         </div>

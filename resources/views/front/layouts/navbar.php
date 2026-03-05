@@ -127,8 +127,8 @@
                 // var_dump($nav_categories);
                 // die;
                 while ($category = mysqli_fetch_assoc($nav_categories["query"])) {
-                    $active = (!empty(request("id")) && request("id") == $category["id"]) ? "active" : "";
-                    echo '<a class="nav-item nav-link link-body-emphasis ' . $active . ' " href="' . url('category?id=' . $category['id']) . '">' . $category['name'] . '</a>';
+                    $active = (!empty(request("category_id")) && request("category_id") == $category["id"]) ? "active" : "";
+                    echo '<a class="nav-item nav-link link-body-emphasis ' . $active . ' " href="' . url('category?category_id=' . $category['id']) . '">' . $category['name'] . '</a>';
                     // echo '<a class="nav-item nav-link link-body-emphasis active" href="">2</a>';
                 }
                 ?>

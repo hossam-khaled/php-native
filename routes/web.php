@@ -5,6 +5,6 @@ include 'admin.php';
 route_get('lang', 'controllers.set_lang');
 route_post('upload', 'controllers.upload');
 route_get('/', 'front.home');
-route_get('/category', 'front.category');
-route_get('/news', 'front.news');
+route_get('/category', 'front.categories.category');
+route_get('/news', 'front.categories.news');
 route_get('/contact', 'front.contact');
